@@ -1,0 +1,14 @@
+This is Super Grub Disk 2, the second version of the Super Grub Disk..
+Super Grub Disk 2 is rewritten from scratch to make Super Grub Disk cleaner, safer, more
+robust, more powerful, and more portable.
+
+See the file NEWS for a description of recent changes to Super Grub Disk 2.
+
+See the file INSTALL for instructions on how to build and install the
+Super Grub Disk data and program files.
+
+Please visit the official web page of Super Grub Disk 2, for more information.
+The URL is <http://www.supergrubdisk.org>.
+
+For now, there is not much documentation yet. Please look at the Super Grub Disk
+Wiki <http://www.supergrubdisk.org/wiki/> for testing procedures.

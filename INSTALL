@@ -1,0 +1,156 @@
+-*- Text -*-
+
+This is the Super Grub Disk.  Welcome.
+
+This file contains instructions for building and installing the Super Grub Disk.
+
+The Requirements
+================
+
+Super Grub Disk depends on some software packages installed into your system. If
+you don't have any of them, please obtain and install them before
+configuring the Super Grub Disk.
+
+* Debian's GRUB based on upstream GNU GRUB 1.96 (grub-pc package)
+
+If you happen to have a non-Debian system you have to check for the following files that might or not be inside packages.
+The paths to each one of the files being written here are the ones that Super Grub Disk uses.
+Currently Super Grub Disk has not a configure step you might want to use symlinks in order to Super Grub Disk find them.
+
+Binaries:
+* /usr/bin/grub-mkrescue
+* /usr/bin/grub-mkimage
+Grub modules:
+* /usr/lib/grub/i386-pc
+
+You will also need the install command although it is usually found on most of the systems.
+
+* /usr/bin/install
+
+Configuring the GRUB
+====================
+
+Usually the `configure' shell script is used to attempt to guess correct values for
+various system-dependent variables used during compilation.  It uses
+those values to create a `Makefile' in each directory of the package.
+
+Currently Super Grub Disk does not provide a `configure'  shell script.
+The provided Makefile file is known to work on a x86 system.
+
+Super Grub Disk might add a `configure' soon.
+
+Building the GRUB
+=================
+
+The simplest way to compile this package is:
+
+  1. Please skip this first step.
+     `cd' to the directory containing the package's source code and
+     type `./autogen.sh' and then `./configure' to configure the
+     package for your system.  If you're using `csh' on an old version
+     of System V, you might need to type `sh ./configure' instead to
+     prevent `csh' from trying to execute `configure' itself.
+
+     Running `configure' takes awhile.  While running, it prints some
+     messages telling which features it is checking for.
+
+  2. Type `make' to compile the package.
+
+  3. Optionally, type `make check' to run any self-tests that come with
+     the package.
+
+  4. Type `make install' to install the programs and any data files and
+     documentation.
+
+  5. You can remove the program binaries and object files from the
+     source code directory by typing `make clean'.  To also remove the
+     files that `configure' created (so you can compile the package for
+     a different kind of computer), type `make distclean'.  There is
+     also a `make maintainer-clean' target, but that is intended mainly
+     for the package's developers.  If you use it, you may have to get
+     all sorts of other programs in order to regenerate files that came
+     with the distribution.
+
+
+Compiling For Multiple Architectures
+====================================
+
+Please skip this section.
+You can compile the package for more than one kind of computer at the
+same time, by placing the object files for each architecture in their
+own directory.  `cd' to the directory where you want the object files
+and executables to go and run the `configure' script.  `configure'
+automatically checks for the source code in the directory that
+`configure' is in and in `..'.
+
+
+Installation Names
+==================
+
+Please skip this section.
+By default, `make install' will install the package's files in
+`/usr/local/bin', `/usr/local/man', etc.  You can specify an
+installation prefix by giving `configure' the option `--prefix=PATH'.
+
+You can specify separate installation prefixes for
+architecture-specific files and architecture-independent files.  If
+you give `configure' the option `--exec-prefix=PATH', the package will
+use PATH as the prefix for installing programs and libraries.
+Documentation and other data files will still use the regular prefix.
+
+In addition, if you use an unusual directory layout you can give
+options like `--bindir=PATH' to specify different values for
+particular kinds of files.  Run `configure --help' for a list of the
+directories you can set and what kinds of files go in them.
+
+If the package supports it, you can cause programs to be installed
+with an extra prefix or suffix on their names by giving `configure'
+the option `--program-prefix=PREFIX' or `--program-suffix=SUFFIX'.
+
+Please note, however, that the GRUB knows where it is located in the
+filesystem.  If you have installed it in an unusual location, the
+system might not work properly, or at all.  The chief utility of these
+options for the GRUB is to allow you to "install" in some alternate
+location, and then copy these to the actual root filesystem later.
+
+
+Sharing Defaults
+================
+
+Please skip this section.
+If you want to set default values for `configure' scripts to share,
+you can create a site shell script called `config.site' that gives
+default values for variables like `CC', `cache_file', and `prefix'.
+`configure' looks for `PREFIX/share/config.site' if it exists, then
+`PREFIX/etc/config.site' if it exists.  Or, you can set the
+`CONFIG_SITE' environment variable to the location of the site script.
+A warning: not all `configure' scripts look for a site script.
+
+
+Operation Controls
+==================
+
+Please skip this section.
+   `configure' recognizes the following options to control how it
+operates.
+
+`--cache-file=FILE'
+     Use and save the results of the tests in FILE instead of
+     `./config.cache'.  Set FILE to `/dev/null' to disable caching, for
+     debugging `configure'.
+
+`--help'
+     Print a summary of the options to `configure', and exit.
+
+`--quiet'
+`--silent'
+`-q'
+     Do not print messages saying which checks are being made.
+
+`--srcdir=DIR'
+     Look for the package's source code in directory DIR.  Usually
+     `configure' can determine that directory automatically.
+
+`--version'
+     Print the version of Autoconf used to generate the `configure'
+     script, and exit.
