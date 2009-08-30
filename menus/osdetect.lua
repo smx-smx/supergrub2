@@ -1,5 +1,6 @@
 #!lua
 --
+-- Copyright (C) 2009  Adrian Gibanel Lopez
 -- Copyright (C) 2009  Free Software Foundation, Inc.
 --
 -- GRUB is free software: you can redistribute it and/or modify
