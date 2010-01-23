@@ -1,6 +1,5 @@
 #!lua
 --
--- Copyright (C) 2009  Adrian Gibanel Lopez
 -- Copyright (C) 2009  Free Software Foundation, Inc.
 --
 -- GRUB is free software: you can redistribute it and/or modify
@@ -59,22 +58,29 @@ function enum_device (device, fs, uuid)
         "\nset FreeBSD.hw.eisa_slots=0" ..
         "\nset FreeBSD.hint.kbdmux.0.disabled=1"
     grub.add_menu (header .. normal .. footer, title)
-    grub.add_menu (header .. " single" .. normal .. footer, 
+    grub.add_menu (header .. " --single" .. normal .. footer,
 		   title .. " (single)")
-    grub.add_menu (header .. " verbose" .. normal .. footer, 
+    grub.add_menu (header .. " --verbose" .. normal .. footer,
 		   title .. " (verbose)")
-    grub.add_menu (header .. noacpi .. footer, 
+    grub.add_menu (header .. " --verbose" .. noacpi .. footer,
 		   title .. " (without ACPI)")
-    grub.add_menu (header .. noacpi .. safe .. footer, 
+    grub.add_menu (header .. " --verbose" .. noacpi .. safe .. footer,
 		   title .. " (safe mode)")
   end
 
   root = "(" .. device .. ")/"
   source = "set root=" .. device .. "\nchainloader +1"
+
+  local drive_num = string.match (device, "hd(%d+)")
+  if (drive_num ~= nil) and (drive_num ~= "0") then
+    source = source .. "\ndrivemap -s hd0 hd" .. drive_num
+  end
+
   title = nil
   if (grub.file_exist (root .. "bootmgr") and
       grub.file_exist (root .. "boot/bcd")) then
     title = "Windows Vista bootmgr"
+    source = "set root=" .. device .. "\nchainloader +1"
   elseif (grub.file_exist (root .. "ntldr") and
 	  grub.file_exist (root .. "ntdetect.com") and
 	  grub.file_exist (root .. "boot.ini")) then
@@ -86,9 +92,9 @@ function enum_device (device, fs, uuid)
     title = "MS-DOS"
   elseif (grub.file_exist (root .. "kernel.sys")) then
     title = "FreeDOS"
-  elseif (fs == "ufs" and grub.file_exist (root .. "boot/loader") and
+  elseif ((fs == "ufs1" or fs == "ufs2") and grub.file_exist (root .. "boot/kernel/kernel") and
 	  grub.file_exist (root .. "boot/device.hints")) then
-     header = "set root=" .. device .. "\nfreebsd /boot/kernel/kernel" 
+     header = "set root=" .. device .. "\nfreebsd /boot/kernel/kernel"
      footer = "\nset FreeBSD.vfs.root.mountfrom=ufs:ufsid/" .. uuid ..
 	"\nfreebsd_loadenv /boot/device.hints"
      title = "FreeBSD (on " .. fs .. " ".. device .. ")"
@@ -96,7 +102,7 @@ function enum_device (device, fs, uuid)
      return 0
   elseif (fs == "zfs" and grub.file_exist (root .. "/@/boot/kernel/kernel") and
       grub.file_exist (root .. "/@/boot/device.hints")) then
-     header = "set root=" .. device .. "\nfreebsd /@/boot/kernel/kernel" 
+     header = "set root=" .. device .. "\nfreebsd /@/boot/kernel/kernel"
      footer =  "\nfreebsd_module_elf /@/boot/kernel/opensolaris.ko" ..
       "\nfreebsd_module_elf /@/boot/kernel/zfs.ko" ..
       "\nfreebsd_module /@/boot/zfs/zpool.cache type=/boot/zfs/zpool.cache" ..
@@ -157,11 +163,9 @@ function enum_device (device, fs, uuid)
 	local initrd
 
 	title = "Linux " .. kernels[i]
-	uuid_setup = "search --set=sgd_linux_kernel -f /boot/" .. kernelnames[i] .. "\n"
-	uuid_set = "probe -u ($sgd_linux_kernel) --set=sgd_root_uuid" .. "\n"
 	source = "set root=" .. device ..
 	  "\nlinux /boot/" .. kernelnames[i] ..
-	  " root=UUID=" .. "$sgd_root_uuid" ..  " ro"
+	  " root=UUID=" .. uuid ..  " ro"
 
 	if grub.file_exist (root .. "boot/initrd-" ..
 			    kernels[i] .. ".img") then
@@ -174,7 +178,7 @@ function enum_device (device, fs, uuid)
 	  initrd = ""
 	end
 
-	grub.add_menu (uuid_setup .. uuid_set .. source .. initrd, title)
+	grub.add_menu (source .. initrd, title)
 	grub.add_menu (source .. " single" .. initrd,
 		       title .. " (single-user mode)")
       end
