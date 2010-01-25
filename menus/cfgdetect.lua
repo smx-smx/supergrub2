@@ -41,7 +41,7 @@ function add_entry( device, fs, uuid )
     local issue_file = grub.file_open( root .. "/etc/issue" )
     issue = grub.file_getline( issue_file )
 
-    if grub.file_exist( "/etc/hostname" ) then
+    if grub.file_exist( root .. "/etc/hostname" ) then
       local hostname_file = grub.file_open( root .. "/etc/hostname" )
       local hostname = grub.file_getline( hostname_file )
 
