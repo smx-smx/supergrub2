@@ -57,13 +57,10 @@ function add_entry( device, fs, uuid )
   else
     title = "Load grub.cfg from " .. root
   end
-  
-  --Some commands, like save_env, require that $prefix be set properly
-  local new_prefix = cfg_path:gsub( "/grub.cfg$" , "" )
 
-  local command_list = "prefix=" .. new_prefix ..
-                       "\nexport prefix" ..
-                       "\nconfigfile " .. cfg_path
+  -- Export $root and $prefix to work around
+  -- https://savannah.gnu.org/bugs/?func=detailitem&item_id=27710
+  local command_list = "export prefix \nexport root \nconfigfile " .. cfg_path
 
   grub.add_menu( command_list , title )
 end
