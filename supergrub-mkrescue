@@ -1,0 +1,7 @@
+#!/bin/bash -ex
+overlay=$(mktemp -d)
+default_options="--output=sgd_hybrid.iso $overlay"
+mkdir -p "$overlay/boot/grub/"
+cp menus/* "$overlay/boot/grub/"
+grub-mkrescue $default_options "$@"
+rm -r "$overlay"
