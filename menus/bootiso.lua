@@ -2,47 +2,49 @@
 
 -- Detects the live system type and boots it
 function boot_iso (isofile, langcode)
+  local basename = basename (isofile)
+  local loop_device = "(" .. basename .. ")"
   -- grml
-  if (dir_exist ("(loop)/boot/grml")) then
+  if (dir_exist (loop_device .. "/boot/grml")) then
     boot_linux (
-      "(loop)/boot/grml/linux26", 
-      "(loop)/boot/grml/initrd.gz",
+      loop_device .. "/boot/grml/linux26", 
+      loop_device .. "/boot/grml/initrd.gz",
       "findiso=" .. isofile .. " apm=power-off quiet boot=live nomce"
     )
   -- Parted Magic
-  elseif (dir_exist ("(loop)/pmagic")) then
+  elseif (dir_exist (loop_device .. "/pmagic")) then
     boot_linux (
-      "(loop)/pmagic/bzImage", 
-      "(loop)/pmagic/initramfs",
+      loop_device .. "/pmagic/bzImage", 
+      loop_device .. "/pmagic/initramfs",
       "iso_filename=" .. isofile .. 
         " edd=off noapic load_ramdisk=1 prompt_ramdisk=0 rw" .. 
         " sleep=10 loglevel=0 keymap=" .. langcode
     )
   -- Sidux
-  elseif (dir_exist ("(loop)/sidux")) then
+  elseif (dir_exist (loop_device .. "/sidux")) then
     boot_linux (
-      find_file ("(loop)/boot", "vmlinuz%-.*%-sidux%-.*"), 
-      find_file ("(loop)/boot", "initrd%.img%-.*%-sidux%-.*"),
+      find_file (loop_device .. "/boot", "vmlinuz%-.*%-sidux%-.*"), 
+      find_file (loop_device .. "/boot", "initrd%.img%-.*%-sidux%-.*"),
       "fromiso=" .. isofile .. " boot=fll quiet"
     )
   -- Slax
-  elseif (dir_exist ("(loop)/slax")) then
+  elseif (dir_exist (loop_device .. "/slax")) then
     boot_linux (
-      "(loop)/boot/vmlinuz", 
-      "(loop)/boot/initrd.gz",
+      loop_device .. "/boot/vmlinuz", 
+      loop_device .. "/boot/initrd.gz",
       "from=" .. isofile .. " ramdisk_size=6666 root=/dev/ram0 rw"
     )
   -- Tinycore
-  elseif (grub.file_exist ("(loop)/boot/tinycore.gz")) then
+  elseif (grub.file_exist (loop_device .. "/boot/tinycore.gz")) then
     boot_linux (
-      "(loop)/boot/bzImage", 
-      "(loop)/boot/tinycore.gz"
+      loop_device .. "/boot/bzImage", 
+      loop_device .. "/boot/tinycore.gz"
     )
   -- Ubuntu and Casper based Distros
-  elseif (dir_exist ("(loop)/casper")) then
+  elseif (dir_exist (loop_device .. "/casper")) then
     boot_linux (
-      "(loop)/casper/vmlinuz", 
-      find_file ("(loop)/casper", "initrd%..z"),
+      loop_device .. "/casper/vmlinuz", 
+      find_file (loop_device .. "/casper", "initrd%..z"),
       "boot=casper iso-scan/filename=" .. isofile .. 
         " quiet splash noprompt" .. 
         " keyb=" .. langcode .. 
@@ -53,6 +55,11 @@ function boot_iso (isofile, langcode)
   else
     print_error ("Unsupported ISO type")
   end
+end
+
+-- Help function to get just the filename from a path
+function basename (path)
+  return path:match (".*/(.-)$")
 end
 
 -- Help function to show an error
@@ -112,7 +119,8 @@ function mount_iso (isofile)
   elseif (not grub.file_exist (isofile)) then
     print_error ("Cannot find isofile '" .. isofile .. "'")
   else
-    local err_no, err_msg = grub.run ("loopback loop " .. isofile)
+    local basename = basename (isofile)
+    local err_no, err_msg = grub.run ("loopback " .. basename .. " " .. isofile)
     if (err_no ~= 0) then
       print_error ("Cannot load ISO: " .. err_msg)
     else
