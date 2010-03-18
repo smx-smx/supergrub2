@@ -1,19 +1,21 @@
 #!lua
 
 -- Detects the live system type and boots it
-function boot_iso (isofile, langcode)
+function iso_entry (isofile, langcode)
   local basename = basename (isofile)
   local loop_device = "(" .. basename .. ")"
   -- grml
   if (dir_exist (loop_device .. "/boot/grml")) then
-    boot_linux (
+    linux_entry (
+      isofile,
       loop_device .. "/boot/grml/linux26", 
       loop_device .. "/boot/grml/initrd.gz",
       "findiso=" .. isofile .. " apm=power-off quiet boot=live nomce"
     )
   -- Parted Magic
   elseif (dir_exist (loop_device .. "/pmagic")) then
-    boot_linux (
+    linux_entry (
+      isofile,
       loop_device .. "/pmagic/bzImage", 
       loop_device .. "/pmagic/initramfs",
       "iso_filename=" .. isofile .. 
@@ -22,27 +24,31 @@ function boot_iso (isofile, langcode)
     )
   -- Sidux
   elseif (dir_exist (loop_device .. "/sidux")) then
-    boot_linux (
+    linux_entry (
+      isofile,
       find_file (loop_device .. "/boot", "vmlinuz%-.*%-sidux%-.*"), 
       find_file (loop_device .. "/boot", "initrd%.img%-.*%-sidux%-.*"),
       "fromiso=" .. isofile .. " boot=fll quiet"
     )
   -- Slax
   elseif (dir_exist (loop_device .. "/slax")) then
-    boot_linux (
+    linux_entry (
+      isofile,
       loop_device .. "/boot/vmlinuz", 
       loop_device .. "/boot/initrd.gz",
       "from=" .. isofile .. " ramdisk_size=6666 root=/dev/ram0 rw"
     )
   -- Tinycore
   elseif (grub.file_exist (loop_device .. "/boot/tinycore.gz")) then
-    boot_linux (
+    linux_entry (
+      isofile,
       loop_device .. "/boot/bzImage", 
       loop_device .. "/boot/tinycore.gz"
     )
   -- Ubuntu and Casper based Distros
   elseif (dir_exist (loop_device .. "/casper")) then
-    boot_linux (
+    linux_entry (
+      isofile,
       loop_device .. "/casper/vmlinuz", 
       find_file (loop_device .. "/casper", "initrd%..z"),
       "boot=casper iso-scan/filename=" .. isofile .. 
@@ -53,7 +59,7 @@ function boot_iso (isofile, langcode)
         " --"
     )
   else
-    print_error ("Unsupported ISO type")
+    error_entry (isofile, "Unsupported ISO type")
   end
 end
 
@@ -63,9 +69,27 @@ function basename (path)
 end
 
 -- Help function to show an error
-function print_error (msg)
-  print ("Error: " .. msg)
-  grub.run ("read")
+function error_entry (isofile, msg)
+  local title = isofile .. " Is not supported."
+
+  local full_msg =
+  "Error: " .. msg .. "\n\\nThe iso file " .. isofile .. " is not supported " ..
+  "by Super GRUB2 disk. The most likely reason is that the iso is not loop " ..
+  "bootable. An iso must be specifically designed to read its root " ..
+  "filesystem from an iso file rather than looking for it in your CDROM " ..
+  "drive. It is impossible to boot an iso file not specifically designed " ..
+  "this way with GRUB or any other bootloader\n\\n" ..
+  "If you believe that this iso file is loop bootable it is mounted as " ..
+  "(" .. basename (isofile) .. ") so you can view its contents in the " ..
+  "grub shell and try to boot it yourself. If there are any distributions " ..
+  "that you know are loop bootable but are not currently supported by this " ..
+  "script please check that you are using the latest version of Super GRUB2 " ..
+  "Disk then send the commands required to boot the iso to " ..
+  "supergrub-english@lists.berlios.de so support can be added."
+
+  local commands = 'echo -e "' .. full_msg .. '"\nread'
+
+  grub.add_menu (commands, title)
 end
 
 -- Help function to search for a file
@@ -92,21 +116,24 @@ function dir_exist (dir)
   return (grub.run("test -d '" .. dir .. "'") == 0)
 end
 
--- Boots a Linux live system
-function boot_linux (linux, initrd, params)
+-- Adds a menu entry for a GNU/Linux live system
+function linux_entry (isofile, linux, initrd, params)
+  local commands = ""
+  local title = "Boot " .. isofile
   if (linux and grub.file_exist (linux)) then
     if (initrd and grub.file_exist (initrd)) then
       if (params) then
-        grub.run ("linux " .. linux .. " " .. params)
+        commands = commands .. "linux " .. linux .. " " .. params .. "\n"
       else
-        grub.run ("linux " .. linux)
+        commands = commands .. "linux " .. linux .. "\n"
       end
-      grub.run ("initrd " .. initrd)
+      commands = commands .. "initrd " .. initrd .. "\n"
     else
-      print_error ("Booting Linux failed: cannot find initrd file '" .. initrd .. "'")
+      error_entry (isofile, "cannot find initrd file '" .. initrd .. "'")
     end
+    grub.add_menu (commands, title)
   else
-    print_error ("Booting Linux failed: cannot find linux file '" .. initrd .. "'")
+    error_entry (isofile, "cannot find linux file '" .. initrd .. "'")
   end
 end
 
@@ -115,14 +142,14 @@ function mount_iso (isofile)
   local result = false
 
   if (isofile == nil) then
-    print_error ("variable 'isofile' is undefined")
+    error_entry (isofile, "variable 'isofile' is undefined")
   elseif (not grub.file_exist (isofile)) then
-    print_error ("Cannot find isofile '" .. isofile .. "'")
+    error_entry (isofile, "Cannot find isofile '" .. isofile .. "'")
   else
     local basename = basename (isofile)
     local err_no, err_msg = grub.run ("loopback " .. basename .. " " .. isofile)
     if (err_no ~= 0) then
-      print_error ("Cannot load ISO: " .. err_msg)
+      error_entry (isofile, "Cannot load ISO: " .. err_msg)
     else
       result = true
     end
@@ -141,5 +168,5 @@ end
 
 -- Mounting and booting the live system
 if (mount_iso (isofile)) then
-  boot_iso (isofile, langcode)
+  iso_entry (isofile, langcode)
 end
