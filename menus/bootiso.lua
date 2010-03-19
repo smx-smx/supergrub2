@@ -161,7 +161,7 @@ end
 
 -- Getting the environment parameters
 isofile = grub.getenv ("isofile")
-langcode = grub.getenv ("isolangcode")
+langcode = grub.getenv ("lang")
 if (langcode == nil) then
   langcode = "us"
 end
