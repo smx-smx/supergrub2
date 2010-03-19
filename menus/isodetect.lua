@@ -2,6 +2,12 @@
 
 -- Detects the live system type and boots it
 function iso_entry (isofile, langcode)
+  if not mount_iso (isofile) then
+    return false
+  end
+  if not langcode then
+    langcode = "us"
+  end
   local basename = basename (isofile)
   local loop_device = "(" .. basename .. ")"
   -- grml
@@ -158,15 +164,18 @@ function mount_iso (isofile)
   return result
 end
 
-
--- Getting the environment parameters
-isofile = grub.getenv ("isofile")
-langcode = grub.getenv ("lang")
-if (langcode == nil) then
-  langcode = "us"
+langcode = grub.getenv("lang")
+isofolder = grub.getenv("isofolder")
+if (isofolder == nil) then
+  isofolder = "/boot/isos"
 end
 
--- Mounting and booting the live system
-if (mount_iso (isofile)) then
-  iso_entry (isofile, langcode)
+function enum_file (name)
+
+  if string.find (name, ".*%.[iI][sS][oO]") then
+    local isofile = isofolder .. "/" .. name
+    iso_entry (isofile, langcode)
+  end
 end
+
+grub.enum_file (enum_file, isofolder)
