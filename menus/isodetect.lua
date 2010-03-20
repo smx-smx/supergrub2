@@ -8,15 +8,19 @@ function iso_entry (isofile, langcode)
   if not langcode then
     langcode = "us"
   end
+
+  --Linux shouldn't be passed the grub device name, just the relative path
+  local relpath = isofile:match ("^%(.-%)(.*)$") or isofile
   local basename = basename (isofile)
   local loop_device = "(" .. basename .. ")"
+
   -- grml
   if (dir_exist (loop_device .. "/boot/grml")) then
     linux_entry (
       isofile,
       loop_device .. "/boot/grml/linux26", 
       loop_device .. "/boot/grml/initrd.gz",
-      "findiso=" .. isofile .. " apm=power-off quiet boot=live nomce"
+      "findiso=" .. relpath .. " apm=power-off quiet boot=live nomce"
     )
   -- Parted Magic
   elseif (dir_exist (loop_device .. "/pmagic")) then
@@ -24,7 +28,7 @@ function iso_entry (isofile, langcode)
       isofile,
       loop_device .. "/pmagic/bzImage", 
       loop_device .. "/pmagic/initramfs",
-      "iso_filename=" .. isofile .. 
+      "iso_filename=" .. relpath .. 
         " edd=off noapic load_ramdisk=1 prompt_ramdisk=0 rw" .. 
         " sleep=10 loglevel=0 keymap=" .. langcode
     )
@@ -34,7 +38,7 @@ function iso_entry (isofile, langcode)
       isofile,
       find_file (loop_device .. "/boot", "vmlinuz%-.*%-sidux%-.*"), 
       find_file (loop_device .. "/boot", "initrd%.img%-.*%-sidux%-.*"),
-      "fromiso=" .. isofile .. " boot=fll quiet"
+      "fromiso=" .. relpath .. " boot=fll quiet"
     )
   -- Slax
   elseif (dir_exist (loop_device .. "/slax")) then
@@ -42,7 +46,7 @@ function iso_entry (isofile, langcode)
       isofile,
       loop_device .. "/boot/vmlinuz", 
       loop_device .. "/boot/initrd.gz",
-      "from=" .. isofile .. " ramdisk_size=6666 root=/dev/ram0 rw"
+      "from=" .. relpath .. " ramdisk_size=6666 root=/dev/ram0 rw"
     )
   -- Tinycore
   elseif (grub.file_exist (loop_device .. "/boot/tinycore.gz")) then
@@ -57,7 +61,7 @@ function iso_entry (isofile, langcode)
       isofile,
       loop_device .. "/casper/vmlinuz", 
       find_file (loop_device .. "/casper", "initrd%..z"),
-      "boot=casper iso-scan/filename=" .. isofile .. 
+      "boot=casper iso-scan/filename=" .. relpath .. 
         " quiet splash noprompt" .. 
         " keyb=" .. langcode .. 
         " debian-installer/language=" .. langcode .. 
@@ -170,12 +174,17 @@ if (isofolder == nil) then
   isofolder = "/boot/isos"
 end
 
-function enum_file (name)
+function enum_device (device, fs, uuid)
 
-  if string.find (name, ".*%.[iI][sS][oO]") then
-    local isofile = isofolder .. "/" .. name
-    iso_entry (isofile, langcode)
+  function enum_file (name)
+
+    if string.find (name, ".*%.[iI][sS][oO]") then
+      local isofile = "(" .. device .. ")" .. isofolder .. "/" .. name
+      iso_entry (isofile, langcode)
+    end
   end
+
+  grub.enum_file (enum_file, "(" .. device .. ")" .. isofolder)
 end
 
-grub.enum_file (enum_file, isofolder)
+grub.enum_device (enum_device)
