@@ -171,10 +171,11 @@ end
 langcode = grub.getenv("lang")
 isofolder = grub.getenv("isofolder")
 if (isofolder == nil) then
-  isofolder = "/boot/isos"
+  isofolder = "/boot-isos"
 end
 
 function enum_device (device, fs, uuid)
+  local isofolder = isofolder
 
   function enum_file (name)
 
@@ -184,6 +185,8 @@ function enum_device (device, fs, uuid)
     end
   end
 
+  grub.enum_file (enum_file, "(" .. device .. ")" .. isofolder)
+  isofolder = "/boot" .. isofolder
   grub.enum_file (enum_file, "(" .. device .. ")" .. isofolder)
 end
 
