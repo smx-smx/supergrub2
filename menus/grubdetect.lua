@@ -20,6 +20,12 @@ function add_entry( device, fs, uuid )
   local title = "Load " .. multiboot_kernel .. " from " .. root
 
   grub.add_menu( command, title )
+  num_grub2_found = num_grub2_found + 1
 end
 
+num_grub2_found = 0
 grub.enum_device( add_entry )
+
+if (num_grub2_found < 1) then
+  print ("Error: Could not find any core.img files")
+end

@@ -174,6 +174,7 @@ if (isofolder == nil) then
   isofolder = "/boot-isos"
 end
 
+num_isos_found = 0
 function enum_device (device, fs, uuid)
   local isofolder = isofolder
 
@@ -182,6 +183,7 @@ function enum_device (device, fs, uuid)
     if string.find (name, ".*%.[iI][sS][oO]") then
       local isofile = "(" .. device .. ")" .. isofolder .. "/" .. name
       iso_entry (isofile, langcode)
+      num_isos_found = num_isos_found + 1
     end
   end
 
@@ -191,3 +193,10 @@ function enum_device (device, fs, uuid)
 end
 
 grub.enum_device (enum_device)
+
+if (num_isos_found < 1) then
+  print ("Error: No iso files were found in " .. isofolder .. " or " .. "/boot" ..
+         isofolder .. " on any devices.\n" .. "If you would like this " ..
+	 "script to search for a different directory, set the environment " ..
+	 "variable $isofolder.")
+end

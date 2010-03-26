@@ -66,6 +66,7 @@ function enum_device (device, fs, uuid)
 		   title .. " (without ACPI)")
     grub.add_menu (header .. " --verbose" .. noacpi .. safe .. footer,
 		   title .. " (safe mode)")
+    num_os_found = num_os_found + 1
   end
 
   root = "(" .. device .. ")/"
@@ -182,6 +183,7 @@ function enum_device (device, fs, uuid)
 	grub.add_menu (source .. initrd, title)
 	grub.add_menu (source .. " single" .. initrd,
 		       title .. " (single-user mode)")
+        num_os_found = num_os_found + 1
       end
       return 0
     end
@@ -198,7 +200,13 @@ function enum_device (device, fs, uuid)
   end
 
   grub.add_menu (source, title)
+  num_os_found = num_os_found + 1
   return 0
 end
 
+num_os_found = 0
 grub.enum_device (enum_device)
+
+if (num_os_found < 1) then
+  print ("Error: No OS found")
+end

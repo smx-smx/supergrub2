@@ -61,6 +61,12 @@ function add_entry( device, fs, uuid )
   local command_list = "configfile " .. cfg_path
 
   grub.add_menu( command_list , title )
+  num_cfg_found = num_cfg_found + 1
 end
 
+num_cfg_found = 0
 grub.enum_device( add_entry )
+
+if (num_cfg_found < 1) then
+  print ("Error: Could not find any grub.cfg files.")
+end
