@@ -97,7 +97,7 @@ function error_entry (isofile, msg)
   "Disk then send the commands required to boot the iso to " ..
   "supergrub-english@lists.berlios.de so support can be added."
 
-  local commands = 'echo -e "' .. full_msg .. '"\nread'
+  local commands = 'echo -e "' .. full_msg .. '"'
 
   grub.add_menu (commands, title)
 end
