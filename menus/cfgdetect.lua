@@ -58,9 +58,7 @@ function add_entry( device, fs, uuid )
     title = "Load grub.cfg from " .. root
   end
 
-  -- Export $root and $prefix to work around
-  -- https://savannah.gnu.org/bugs/?func=detailitem&item_id=27710
-  local command_list = "export prefix \nexport root \nconfigfile " .. cfg_path
+  local command_list = "configfile " .. cfg_path
 
   grub.add_menu( command_list , title )
 end
