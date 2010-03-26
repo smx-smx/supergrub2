@@ -190,13 +190,15 @@ function enum_device (device, fs, uuid)
   end
 
   if title == nil then
+    --[[ No OS was detected, don't chainload hoping there's a bootloader there
     local partition = string.match (device, ".*,(%d+)")
 
     if (partition ~= nil) and (tonumber (partition) > 4) then
       return 0
     end
 
-    title = "Other OS"
+    title = "Other OS" ]]--
+    return 0
   end
 
   grub.add_menu (source, title)
