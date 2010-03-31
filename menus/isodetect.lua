@@ -19,8 +19,16 @@ function iso_entry (isofile, langcode)
   local basename = basename (isofile)
   local loop_device = "(" .. basename .. ")"
 
+  -- Any distro providing a grub_loopback.cfg
+  if (grub.file_exist (loop_device .. "/boot/grub_loopback.cfg")) then
+    local title = "Boot " .. isofile
+    local commands = "set iso_path='" .. relpath .. "'\nexport iso_path" ..
+                     "\nset root='" .. loop_device .. "'" ..
+                     "\nconfigfile /boot/grub_loopback.cfg"
+    grub.add_menu (commands, title)
+
   -- grml
-  if (dir_exist (loop_device .. "/boot/grml")) then
+  elseif (dir_exist (loop_device .. "/boot/grml")) then
     linux_entry (
       isofile,
       loop_device .. "/boot/grml/linux26", 
