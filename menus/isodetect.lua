@@ -1,5 +1,10 @@
 #!lua
 
+-- This script is based on JustRon's scripts listisos.lu and bootiso.lua:
+-- http://ubuntuforums.org/showthread.php?t=1288604
+-- The original scripts were released into the public domain by JustRon and
+-- I, Jordan Uggla, release this script into the public domain as well.
+
 -- Detects the live system type and boots it
 function iso_entry (isofile, langcode)
   if not mount_iso (isofile) then
