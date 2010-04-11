@@ -19,12 +19,12 @@ function iso_entry (isofile, langcode)
   local basename = basename (isofile)
   local loop_device = "(" .. basename .. ")"
 
-  -- Any distro providing a grub_loopback.cfg
-  if (grub.file_exist (loop_device .. "/boot/grub_loopback.cfg")) then
+  -- Any distro providing a loopback.cfg
+  if (grub.file_exist (loop_device .. "/boot/grub/loopback.cfg")) then
     local title = "Boot " .. isofile
     local commands = "set iso_path='" .. relpath .. "'\nexport iso_path" ..
                      "\nset root='" .. loop_device .. "'" ..
-                     "\nconfigfile /boot/grub_loopback.cfg"
+                     "\nconfigfile /boot/grub/loopback.cfg"
     grub.add_menu (commands, title)
 
   -- grml
