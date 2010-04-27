@@ -168,9 +168,38 @@ function linux_entry (isofile, linux, initrd, params)
   end
 end
 
+-- Checks that filename contains only allowed characters
+function filename_allowed (isofile)
+  local allowed_chars = '%w_%-%./'
+
+  -- Remove device, if any, from path.
+  -- Device names contain parens, which are not allowed in the filename itself
+  local isofile = isofile:match ("^%(.-%)(.*)$") or isofile
+
+  if (isofile:match ("^[" .. allowed_chars .. "]*$")) then
+    return true;
+  end
+
+  local title = "Error: " .. isofile .. " has unallowed characters"
+
+  local message = 'Only alphanumeric characters, periods, underscores, ' ..
+                  'and dashes are allowed as part of an iso filename. ' ..
+                  'The exact lua patter for allowed characters is "' ..
+                  allowed_chars .. '"'
+  local command = "echo '" .. message .. "'"
+
+  grub.add_menu (command, title)
+
+  return false
+end
+
 -- Mounts the iso file
 function mount_iso (isofile)
   local result = false
+
+  if not filename_allowed (isofile) then
+    return false
+  end
 
   if (isofile == nil) then
     error_entry (isofile, "variable 'isofile' is undefined")
