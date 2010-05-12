@@ -116,7 +116,9 @@ function error_entry (isofile, msg)
   "that you know are loop bootable but are not currently supported by this " ..
   "script please check that you are using the latest version of Super GRUB2 " ..
   "Disk then send the commands required to boot the iso to " ..
-  "supergrub-english@lists.berlios.de so support can be added."
+  "supergrub-english@lists.berlios.de so support can be added. Or even " ..
+  "better, convince them to ship a loopback.cfg on their isos: \n\\n" ..
+  "www.supergrubdisk.org/wiki/Loopback.cfg for more info"
 
   local commands = 'echo -e "' .. full_msg .. '"'
 
