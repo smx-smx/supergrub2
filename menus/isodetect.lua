@@ -101,7 +101,7 @@ end
 
 -- Help function to show an error
 function error_entry (isofile, msg)
-  local title = isofile .. " Is not supported."
+  local title = "Error: " .. isofile .. " is not supported."
 
   local full_msg =
   "Error: " .. msg .. "\n\\nThe iso file " .. isofile .. " is not supported " ..
