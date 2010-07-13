@@ -151,6 +151,15 @@ end
 
 -- Adds a menu entry for a GNU/Linux live system
 function linux_entry (isofile, linux, initrd, params)
+  -- Sometimes a distribution may have been correctly detected, but that
+  -- distribution may have changed how they name their kernel and initrd since
+  -- this script was made. If so linux or initrd may be nil and we should
+  -- present an error.
+  if not linux and initrd then
+    error_entry (isofile, "Unsupported ISO type")
+    return false
+  end
+
   local commands = ""
   local title = "Boot " .. isofile
   if (linux and grub.file_exist (linux)) then
