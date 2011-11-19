@@ -4,7 +4,5 @@ default_options="--output=sgd_hybrid.iso $overlay"
 ./generate_translation_cfg.sh
 mkdir -p "$overlay/boot/grub/"
 cp menus/* "$overlay/boot/grub/"
-mkdir -p "$overlay/boot/grub/trans"
-cp translations/* "$overlay/boot/grub/trans"
 grub-mkrescue $default_options "$@"
 rm -r "$overlay"
