@@ -9,3 +9,7 @@ been replicated.
 In fr.sh you should change the name for your language and make sure that langcode is the same
 you have used for the translation directory and file names.
 In fr.cfg you should translate the text enclosed between double quotes.
+
+In order to test your translation please check:
+  Build Super Grub2 Disk
+section at INSTALL file.
