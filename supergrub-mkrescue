@@ -5,5 +5,7 @@ default_options="--output=super_grub2_disk_hybrid_${VERSION}.iso $overlay"
 ./generate_translation_cfg.sh
 mkdir -p "$overlay/boot/grub/"
 cp menus/* "$overlay/boot/grub/"
+cp AUTHORS COPYING "$overlay/boot/grub/"
+sed -i "s/VERSION_TO_REPLACE/${VERSION}/g" "$overlay/boot/grub/main.cfg"
 grub-mkrescue $default_options "$@"
 rm -r "$overlay"
