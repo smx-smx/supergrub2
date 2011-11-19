@@ -1,6 +1,7 @@
 #!/bin/bash -ex
 overlay=$(mktemp -d)
 default_options="--output=sgd_hybrid.iso $overlay"
+./generate_translation_cfg.sh
 mkdir -p "$overlay/boot/grub/"
 cp menus/* "$overlay/boot/grub/"
 mkdir -p "$overlay/boot/grub/trans"

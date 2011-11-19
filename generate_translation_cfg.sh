@@ -1,0 +1,19 @@
+#!/bin/bash
+
+TRANSLATIONS_DIRECTORY="translations"
+TRANSLATIONS_EXTENSION="cfg"
+TRANSLATION_CFG_DIRECTORY="menus"
+TRANSLATION_CFG_FILE="translate.cfg"
+TRANSLATION_CFG_PATH=${TRANSLATION_CFG_DIRECTORY}/${TRANSLATION_CFG_FILE}
+TRANSLATION_CFG_ENTRY_HEADER_PATH="language_template_entry_header.cfg"
+TRANSLATION_CFG_ENTRY_FOOTER_PATH="language_template_entry_footer.cfg"
+
+trans_number = 0
+for n_trans in ${TRANSLATIONS_DIRECTORY}/*${TRANSLATIONS_EXTENSION} ; do
+
+  cat ${TRANSLATION_CFG_ENTRY_HEADER_PATH}
+  cat ${n_trans}
+  cat ${TRANSLATION_CFG_ENTRY_FOOTER_PATH}
+  
+  trans_number=trans_number+1
+done > ${TRANSLATION_CFG_PATH}
