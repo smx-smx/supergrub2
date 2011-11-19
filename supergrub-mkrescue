@@ -1,6 +1,7 @@
 #!/bin/bash -ex
+VERSION=`cat VERSION`
 overlay=$(mktemp -d)
-default_options="--output=sgd_hybrid.iso $overlay"
+default_options="--output=super_grub2_disk_hybrid_${VERSION}.iso $overlay"
 ./generate_translation_cfg.sh
 mkdir -p "$overlay/boot/grub/"
 cp menus/* "$overlay/boot/grub/"
