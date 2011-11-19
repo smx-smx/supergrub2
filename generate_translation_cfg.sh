@@ -17,3 +17,17 @@ for n_trans_dir in ${TRANSLATIONS_DIRECTORY}/* ; do
   cat ${TRANSLATION_CFG_ENTRY_FOOTER_PATH}
   
 done > ${TRANSLATION_CFG_PATH}
+
+# English translation for default menus
+cat << EOF > ${TRANSLATION_CFG_DIRECTORY}/main.cfg
+  if test "\${str_color}" = ""; then
+EOF
+cat ${TRANSLATIONS_DIRECTORY}/en/en.cfg \
+>> ${TRANSLATION_CFG_DIRECTORY}/main.cfg
+
+cat << EOF >> ${TRANSLATION_CFG_DIRECTORY}/main.cfg
+ fi
+EOF
+cat ${TRANSLATION_CFG_DIRECTORY}/main_template.cfg \
+>> ${TRANSLATION_CFG_DIRECTORY}/main.cfg
+
