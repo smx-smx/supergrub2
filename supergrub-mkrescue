@@ -1,11 +1,48 @@
 #!/bin/bash -ex
+usage() {
+cat <<EOF
+
+  $0 -o=output.iso
+  Copyright Adrian Gibanel Lopez
+  Licensed under the GNU PUBLIC LICENSE 3.0
+
+  CREATE CALL
+  ===========
+
+  Usage: $0 [-o=FILENAME]
+  Example: $0 -o=myrescatux.iso
+
+EOF
+
+}
+# Check the arguments.
+for option in "$@"; do
+    case "$option" in
+    -h | --help)
+	usage
+	exit 0 ;;
+    -o=*)
+	CUSTOM_ISO_FILENAME=`echo "$option" | sed 's/-o=//'` ;;
+    esac
+done
+
 VERSION=`cat VERSION`
+BOOT_ISOS_DIRECTORY="boot-isos"
 overlay=$(mktemp -d)
-default_options="--output=super_grub2_disk_hybrid_${VERSION}.iso $overlay"
+ISO_FILENAME="super_grub2_disk_hybrid_${VERSION}.iso"
+
+if [[ "x$CUSTOM_ISO_FILENAME" != x ]] ; then
+  ISO_FILENAME="${CUSTOM_ISO_FILENAME}"
+fi
+
+default_options="--output=${ISO_FILENAME} $overlay"
 ./generate_translation_cfg.sh
 mkdir -p "$overlay/boot/grub/"
 cp menus/* "$overlay/boot/grub/"
+if [ -d ${BOOT_ISOS_DIRECTORY} ] ; then
+  cp -r ${BOOT_ISOS_DIRECTORY} "$overlay/boot/"
+fi
 cp AUTHORS COPYING "$overlay/boot/grub/"
 sed -i "s/VERSION_TO_REPLACE/${VERSION}/g" "$overlay/boot/grub/main.cfg"
-grub-mkrescue $default_options "$@"
+grub-mkrescue $default_options
 rm -r "$overlay"
