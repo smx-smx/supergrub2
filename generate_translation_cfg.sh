@@ -19,6 +19,11 @@ for n_trans_dir in ${TRANSLATIONS_DIRECTORY}/* ; do
 done > ${TRANSLATION_CFG_PATH}
 
 # English translation for default menus
+
+# The following str_color check is a trick so that
+# Change colour option actually works
+# adrian15
+#
 cat << EOF > ${TRANSLATION_CFG_DIRECTORY}/main.cfg
   if test "\${str_color}" = ""; then
 EOF
