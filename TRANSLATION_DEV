@@ -1,0 +1,27 @@
+ADD A NEW TRANSLATION STRING AND USE IT
+=======================================
+
+1. Add a new string-variable at: translations/en/en.cfg
+    such as:
+    set str_foo="Fooing"
+
+   Note: Every translation string starts with str as a convention although technically is not a requirement.
+
+2. Repeat the process at: translation/LANG/LANG.cfg
+    for other languages.
+
+3. Make sure you export it at: translations_export.cfg file
+   such as:
+   export str_foo
+
+4. If you want to use the translation script you just have to use it as a normal Grub2 variable.
+
+  As an example from current code:
+
+###
+menuentry "$str_detect_any_os" {
+ configfile $script_prefix/osdetect.cfg
+}
+###
+
+$str_detect_any_os is the variable which will be replaced with "Detect any OS" in English language in runtime.
