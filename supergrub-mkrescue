@@ -26,10 +26,13 @@ for option in "$@"; do
     esac
 done
 
-VERSION=`cat VERSION`
+# Get the version number for this Super GRUB2 Disk release
+source menus/version.cfg
+
+
 BOOT_ISOS_DIRECTORY="boot-isos"
 overlay=$(mktemp -d)
-ISO_FILENAME="super_grub2_disk_hybrid_${VERSION}.iso"
+ISO_FILENAME="super_grub2_disk_hybrid_${sgrub_version}.iso"
 
 if [[ "x$CUSTOM_ISO_FILENAME" != x ]] ; then
   ISO_FILENAME="${CUSTOM_ISO_FILENAME}"
@@ -42,11 +45,6 @@ if [ -d ${BOOT_ISOS_DIRECTORY} ] ; then
   cp -r ${BOOT_ISOS_DIRECTORY} "$overlay/boot/"
 fi
 
-# The following command is a quick work around, it should only exist for one
-# commit.
-cp menus/main_template.cfg "$overlay/boot/grub/main.cfg"
-
 cp AUTHORS COPYING "$overlay/boot/grub/"
-sed -i "s/VERSION_TO_REPLACE/${VERSION}/g" "$overlay/boot/grub/main.cfg"
 grub-mkrescue $default_options
 rm -r "$overlay"
