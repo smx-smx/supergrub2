@@ -36,12 +36,16 @@ if [[ "x$CUSTOM_ISO_FILENAME" != x ]] ; then
 fi
 
 default_options="--output=${ISO_FILENAME} $overlay"
-./generate_translation_cfg.sh
 mkdir -p "$overlay/boot/grub/"
-cp menus/* "$overlay/boot/grub/"
+cp -r menus/* "$overlay/boot/grub/"
 if [ -d ${BOOT_ISOS_DIRECTORY} ] ; then
   cp -r ${BOOT_ISOS_DIRECTORY} "$overlay/boot/"
 fi
+
+# The following command is a quick work around, it should only exist for one
+# commit.
+cp menus/main_template.cfg "$overlay/boot/grub/main.cfg"
+
 cp AUTHORS COPYING "$overlay/boot/grub/"
 sed -i "s/VERSION_TO_REPLACE/${VERSION}/g" "$overlay/boot/grub/main.cfg"
 grub-mkrescue $default_options
