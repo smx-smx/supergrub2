@@ -46,5 +46,14 @@ if [ -d ${BOOT_ISOS_DIRECTORY} ] ; then
 fi
 
 cp AUTHORS COPYING "$overlay/boot/grub/"
+
+# Generate mo files and add them to overlay
+mkdir "$overlay/boot/grub/sgd_locale/"
+for pofile in po/*.po; do
+  basename=${pofile##*/}
+  moname="${basename%.po}.mo"
+  msgfmt "$pofile" --output-file="$overlay/boot/grub/sgd_locale/$moname"
+done
+
 grub-mkrescue $default_options
 rm -r "$overlay"

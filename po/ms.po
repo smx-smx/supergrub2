@@ -1,0 +1,66 @@
+# Maylay translation of Super GRUB2 Disk.
+# Copyright (C) 2009,2010,2011,2012  Adrian Gibanel Lopez, Jordan Edward Uggla
+# This file is distributed under the same license as the Super GRUB2 Disk package.
+# Jordan Edward Uggla <jordan.uggla@gmail.com>, 2012.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Super GRUB2 Disk 2.0s1~beta1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-25 15:16-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: SlamberGamer <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: menus/main.cfg:94
+msgid "Change language"
+msgstr ""
+
+#: menus/main.cfg:99
+msgid "Detect any Operating System"
+msgstr "Mengesan mana-mana Sistem Operasi"
+
+#: menus/main.cfg:104
+msgid "Detect any GRUB2 configuration file (grub.cfg)"
+msgstr "Mengesan mana-mana fail konfigurasi GRUB2 (grub.cfg)"
+
+#: menus/main.cfg:109
+msgid "Detect any GRUB2 installation (even if mbr is overwritten)"
+msgstr "Mengesan mana-mana pemasangan GRUB2 (walaupun MBR telah ditulis ganti)"
+
+#: menus/main.cfg:114
+msgid "Detect loop bootable isos (in /boot-isos or /boot/boot-isos)"
+msgstr "Mengesan Bootable isos (dalam /boot-isos atau /boot/boot-isos)"
+
+#: menus/main.cfg:118
+msgid "Enable GRUB2's LVM support"
+msgstr "Aktifkan sokongan LVM GRUB2"
+
+#: menus/main.cfg:122
+msgid "Enable GRUB2's RAID support"
+msgstr "Aktifkan sokongan RAID GRUB2"
+
+#: menus/main.cfg:130
+msgid "Enable GRUB2's PATA support (to work around BIOS bugs/limitations)"
+msgstr "Aktifkan sokongan PATA GRUB2 (untuk bekerja di sekitar pepijat 'bug' / had BIOS)"
+
+#: menus/main.cfg:135
+msgid "Enable GRUB2's USB support *experimental*"
+msgstr "Membolehkan sokongan USB GRUB2 *experimental*"
+
+#: menus/main.cfg:142
+msgid "Enable serial terminal"
+msgstr "Aktifkan terminal siri"
+
+#: menus/main.cfg:148
+msgid "List devices/partitions"
+msgstr "Senarai alat-alat / partition"
+
+#: menus/main.cfg:163
+msgid "Color ON/OFF"
+msgstr ""
