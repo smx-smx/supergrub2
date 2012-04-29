@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2009,2010,2011,2012  Adrian Gibanel Lopez, Jordan Edward Uggla
-# This file is distributed under the same license as the Super GRUB2 Disk package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Super GRUB2 Disk 2.0s1~beta1\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-25 15:16-0700\n"
+"POT-Creation-Date: 2012-04-29 15:57-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,50 +17,54 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: menus/main.cfg:94
+#: menus/main.cfg:80 menus/main.cfg:149
+msgid "Press escape to return to the main menu"
+msgstr ""
+
+#: menus/main.cfg:84
 msgid "Change language"
 msgstr ""
 
-#: menus/main.cfg:99
+#: menus/main.cfg:89
 msgid "Detect any Operating System"
 msgstr ""
 
-#: menus/main.cfg:104
+#: menus/main.cfg:94
 msgid "Detect any GRUB2 configuration file (grub.cfg)"
 msgstr ""
 
-#: menus/main.cfg:109
+#: menus/main.cfg:99
 msgid "Detect any GRUB2 installation (even if mbr is overwritten)"
 msgstr ""
 
-#: menus/main.cfg:114
+#: menus/main.cfg:104
 msgid "Detect loop bootable isos (in /boot-isos or /boot/boot-isos)"
 msgstr ""
 
-#: menus/main.cfg:118
+#: menus/main.cfg:108
 msgid "Enable GRUB2's LVM support"
 msgstr ""
 
-#: menus/main.cfg:122
+#: menus/main.cfg:112
 msgid "Enable GRUB2's RAID support"
 msgstr ""
 
-#: menus/main.cfg:130
+#: menus/main.cfg:120
 msgid "Enable GRUB2's PATA support (to work around BIOS bugs/limitations)"
 msgstr ""
 
-#: menus/main.cfg:135
+#: menus/main.cfg:125
 msgid "Enable GRUB2's USB support *experimental*"
 msgstr ""
 
-#: menus/main.cfg:142
+#: menus/main.cfg:132
 msgid "Enable serial terminal"
 msgstr ""
 
-#: menus/main.cfg:148
+#: menus/main.cfg:138
 msgid "List devices/partitions"
 msgstr ""
 
-#: menus/main.cfg:163
+#: menus/main.cfg:153
 msgid "Color ON/OFF"
 msgstr ""
