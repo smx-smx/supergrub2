@@ -1,3 +1,5 @@
+***** For Translators *****
+
 For translations Super GRUB2 Disk uses gettext, which means that if you've provided translations for almost any other program before, the system should be familiar to you. The po files for Super GRUB2 Disk are in the po/ directory in the source tree.
 
 For instructions on starting a new translation see "info -f gettext --node=Creating"
@@ -7,3 +9,21 @@ When you run ./supergrub-mkrescue (see INSTALL file) for the first time after ad
 In order to test your translation please check:
   Build Super Grub2 Disk
 section at INSTALL file.
+
+
+***** For Developers *****
+If you're developing a script for Super GRUB2 Disk and would like it to be translated, it's pretty simple. Just take the string you want to use, like "hello, world" and add a '$' before the first quotation mark, to make it $"hello world". After adding a new translated string run ./update_po to update the files in the po/ directory. If you're adding a new file with translated strings you'll need to add that file's path to the file xgettext_file_list before running ./update_po .
+
+Example code before:
+
+menuentry "Print familiar greeting" {
+  echo "hello, world"
+  sleep 5
+}
+
+Example code after:
+
+menuentry $"Print familiar greeting" {
+  echo $"hello world"
+  sleep 5
+}

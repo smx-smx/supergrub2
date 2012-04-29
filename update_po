@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# This script updates po/sgrub.pot using xgettext, then updates all po/*.po
+# using msgmerge. It should be run after adding / changing any translated strings.
+# If you've added a new file which has translated strings, make sure to add it to
+# gettext_file_list.
+
+xgettext --files-from=xgettext_file_list --language=shell --output=po/sgrub.pot
+for pofile in po/*.po; do
+  msgmerge "$pofile" po/sgrub.pot -U
+done
