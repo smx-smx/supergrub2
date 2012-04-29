@@ -1,14 +1,8 @@
-  Translating into your language is quite easy as long as you do not use special characters.
-You should replicate menus/translations/en structure the same ways as translations/es structure has
-been replicated.
+For translations Super GRUB2 Disk uses gettext, which means that if you've provided translations for almost any other program before, the system should be familiar to you. The po files for Super GRUB2 Disk are in the po/ directory in the source tree.
 
-  Supposing that you are translating into french (fr) in the end you should have:
-  menus/translations/fr/fr_strings.cfg
-  menus/translations/fr/fr_info.cfg
+For instructions on starting a new translation see "info -f gettext --node=Creating"
 
-In fr_info.cfg you should change the name for your language and make sure that langcode is the same
-you have used for the translation directory and file names.
-In fr_strings.cfg you should translate the text enclosed between double quotes.
+When you run ./supergrub-mkrescue (see INSTALL file) for the first time after adding a new translation (by creating a new po file) you will be asked to enter the name of your language, in your language. This is used in the title of the menu entry for your new language in the language selection menu. This information is then stored in menus/sgd_locale/LL_info.cfg (where "LL" is the two letter language code for your new language).
 
 In order to test your translation please check:
   Build Super Grub2 Disk
