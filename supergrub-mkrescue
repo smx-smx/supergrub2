@@ -74,5 +74,25 @@ for pofile in po/*.po; do
   fi
 done
 
+# Find unifont font file to create grub font. This is needed for gfxterm in grub, which
+# in turn is needed for displaying non-ASCII characters for non-English translations.
+# This unifont finding code was copied from grub's configure.ac.
+for ext in pcf pcf.gz bdf bdf.gz ttf ttf.gz; do
+  for dir in . /usr/src /usr/share/fonts/X11/misc /usr/share/fonts/unifont; do
+    if test -f "$dir/unifont.$ext"; then
+      font_source="$dir/unifont.$ext"
+      break 2
+    fi
+  done
+done
+
+if [[ -n "$font_source" ]]; then
+  grub-mkfont "$font_source" --output="$overlay/boot/grub/unifont.pf2"
+else
+  echo "Error: Unifont not found. Unifont is needed for Super GRUB2 Disk" >&2
+  echo "to properly display non-ASCII characters. Aborting without creating an iso." >&2
+  exit 1
+fi
+
 grub-mkrescue $default_options
 rm -r "$overlay"
