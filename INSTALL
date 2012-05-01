@@ -1,28 +1,9 @@
--*- Text -*-
+This file contains instructions for building Super GRUB2 Disk.
 
-This is the Super Grub2 Disk.  Welcome.
-
-This file contains instructions for building and installing the Super Grub Disk.
-
-The Requirements
+Requirements
 ================
 
-Super Grub Disk depends on some software packages installed into your system. If
-you don't have any of them, please obtain and install them before
-configuring the Super Grub Disk.
-
-* Debian's GRUB based on upstream GNU GRUB 1.96 (grub-pc package)
-* xorriso package or binary
-
-If you happen to have a non-Debian system you have to check for the following files that might or not be inside packages.
-The paths to each one of the files being written here are the ones that Super Grub Disk uses.
-Currently Super Grub Disk has not a configure step you might want to use symlinks in order to Super Grub Disk find them.
-
-Binaries:
-* /usr/bin/grub-mkrescue
-* /usr/bin/grub-mkimage
-Grub modules:
-* /usr/lib/grub/i386-pc
+Super GRUB2 Disk tends to depend heavily on the latest features of GRUB2, so using it with older versions of GRUB2 is very likely to fail. Currently Super GRUB2 Disk requires GRUB 2.0 (as opposed to GRUB 1.99, which is GRUB2, but is not GRUB 2.0). Newer versions of GRUB2 than 2.0 will probably work with this version of Super GRUB2 Disk's scripts, but I can't make any guarantees about the future. GNU xorriso is also needed (it's a dependency of the grub-mkrescue utility which is part of GRUB2).
 
 Build Super Grub2 Disk
 ==========================
