@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Build an SG2D iso and test it in a VM.
+# Useful for quickly testing new changes.
+
+# Saves generated iso to /tmp/sgd_vmtest.iso, and runs it via kvm using
+# kvm's "-nographic" option so that output and input both come from the
+# terminal. This is fast, works via ssh (even without X forwarding), allows
+# copying and pasting of test code / error messages, and is generally very
+# convenient. This also means that to exit out of this kvm instance you'll need
+# to shutdown the virtual machine (press 'c' to get to a grub shell then run
+# "shutdown") or kill kvm from another terminal (so make sure you have another
+# terminal that you can use so that you don't get stuck in an infinite loop with
+# no way to kill kvm).
+
+# SG2D needs to take input from, and output to, serial. To accomplish this, this
+# script creates a temporary menus/sgd_custom.cfg. If you already have a
+# menus/sgd_custom.cfg then it will not be modified and you'll have to make sure
+# that it changes to serial output for this script to work. While it's possible
+# to make SG2D always display via serial when available, we can't ship such a
+# configuration because not all serial devices are terminals, and sending grub's
+# output to a non-terminal device could cause serious problems.
+
+if [[ -e menus/sgd_custom.cfg ]]; then
+  leave_sgd_custom_alone=true
+fi
+
+if [[ "$leave_sgd_custom_alone" != true ]]; then
+  cat > menus/sgd_custom.cfg << EOF
+serial
+terminal_output serial
+terminal_input serial
+EOF
+
+fi
+
+./supergrub-mkrescue -o=/tmp/sgd_vmtest.iso
+
+
+if [[ "$leave_sgd_custom_alone" != true ]]; then
+  rm menus/sgd_custom.cfg
+fi
+
+kvm -nographic -cdrom /tmp/sgd_vmtest.iso
