@@ -17,13 +17,15 @@ EOF
 }
 # Check the arguments.
 for option in "$@"; do
-    case "$option" in
+  case "$option" in
     -h | --help)
-	usage
-	exit 0 ;;
+      usage
+      exit 0
+    ;;
     -o=*)
-	CUSTOM_ISO_FILENAME=`echo "$option" | sed 's/-o=//'` ;;
-    esac
+      CUSTOM_ISO_FILENAME=`echo "$option" | sed 's/-o=//'`
+    ;;
+  esac
 done
 
 # Get the version number for this Super GRUB2 Disk release
