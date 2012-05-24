@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Super GRUB2 Disk 2.0s1~beta1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-29 15:57-0700\n"
+"POT-Creation-Date: 2012-05-24 15:16-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Adrian Gibanel Lopez <adrian15sgd@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,54 +17,58 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: menus/main.cfg:80 menus/main.cfg:149
+#: menus/main.cfg:97 menus/main.cfg:169
 msgid "Press escape to return to the main menu"
 msgstr ""
 
-#: menus/main.cfg:84
+#: menus/main.cfg:101
 msgid "Change language"
 msgstr "Cambiar idioma"
 
-#: menus/main.cfg:89
+#: menus/main.cfg:106
 msgid "Detect any Operating System"
 msgstr "Detecta cualquier SO"
 
-#: menus/main.cfg:94
+#: menus/main.cfg:111
 msgid "Detect any GRUB2 configuration file (grub.cfg)"
 msgstr "Detecta cualquier archivo de configuracion GRUB2 (grub.cfg)"
 
-#: menus/main.cfg:99
+#: menus/main.cfg:116
 msgid "Detect any GRUB2 installation (even if mbr is overwritten)"
 msgstr "Detect cualquier instalacion de GRUB2 (aunque mbr este sobreescrito)"
 
-#: menus/main.cfg:104
+#: menus/main.cfg:121
 msgid "Detect loop bootable isos (in /boot-isos or /boot/boot-isos)"
 msgstr "Detecta isos arrancables (en /boot-isos y /boot/boot-isos/)"
 
-#: menus/main.cfg:108
+#: menus/main.cfg:125
+msgid "Enable extra GRUB2 functionality..."
+msgstr ""
+
+#: menus/main.cfg:127
 msgid "Enable GRUB2's LVM support"
 msgstr "Activa soporte LVM de GRUB2"
 
-#: menus/main.cfg:112
+#: menus/main.cfg:131
 msgid "Enable GRUB2's RAID support"
 msgstr "Activa soporte RAID de GRUB2"
 
-#: menus/main.cfg:120
+#: menus/main.cfg:139
 msgid "Enable GRUB2's PATA support (to work around BIOS bugs/limitations)"
 msgstr "Activa soporte PATA de GRUB2 (para solventar limitaciones de BIOS)"
 
-#: menus/main.cfg:125
+#: menus/main.cfg:144
 msgid "Enable GRUB2's USB support *experimental*"
 msgstr "Activa soporte USB de GRUB2 *experimental*"
 
-#: menus/main.cfg:132
+#: menus/main.cfg:151
 msgid "Enable serial terminal"
 msgstr "Activa terminal serie"
 
-#: menus/main.cfg:138
+#: menus/main.cfg:158
 msgid "List devices/partitions"
 msgstr "Mostrar dispositivos/particiones"
 
-#: menus/main.cfg:153
+#: menus/main.cfg:173
 msgid "Color ON/OFF"
 msgstr "Color SI/NO"
