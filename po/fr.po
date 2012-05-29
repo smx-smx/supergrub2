@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Super GRUB2 Disk 2.0s1~beta1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-24 15:16-0700\n"
+"POT-Creation-Date: 2012-05-29 16:23-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Daniel_KM <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: menus/main.cfg:97 menus/main.cfg:169
+#: menus/main.cfg:97 menus/main.cfg:169 menus/cfgdetect.cfg:49
 msgid "Press escape to return to the main menu"
 msgstr ""
 
@@ -75,3 +75,7 @@ msgstr "Lister les peripheriques et les partitions"
 #: menus/main.cfg:173
 msgid "Color ON/OFF"
 msgstr "Activer/desactiver la couleur"
+
+#: menus/cfgdetect.cfg:48
+msgid "Error: Could not find any grub.cfg files."
+msgstr ""

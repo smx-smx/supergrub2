@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-24 15:16-0700\n"
+"POT-Creation-Date: 2012-05-29 16:23-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: menus/main.cfg:97 menus/main.cfg:169
+#: menus/main.cfg:97 menus/main.cfg:169 menus/cfgdetect.cfg:49
 msgid "Press escape to return to the main menu"
 msgstr ""
 
@@ -71,4 +71,8 @@ msgstr ""
 
 #: menus/main.cfg:173
 msgid "Color ON/OFF"
+msgstr ""
+
+#: menus/cfgdetect.cfg:48
+msgid "Error: Could not find any grub.cfg files."
 msgstr ""
