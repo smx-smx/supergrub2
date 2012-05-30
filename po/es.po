@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: Super GRUB2 Disk 2.0s1~beta1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-29 16:45-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2012-05-30 02:41-0700\n"
 "Last-Translator: Adrian Gibanel Lopez <adrian15sgd@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: Spanish <adrian15sgd@gmail.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: menus/main.cfg:97 menus/main.cfg:174 menus/cfgdetect.cfg:49
 #: menus/menulstdetect.cfg:42
 msgid "Press escape to return to the main menu"
-msgstr ""
+msgstr "Pulsa ESC para volver al menú principal"
 
 #: menus/main.cfg:101
 msgid "Change language"
@@ -32,16 +32,16 @@ msgstr "Detecta cualquier SO"
 
 #: menus/main.cfg:111
 msgid "Detect any GRUB2 configuration file (grub.cfg)"
-msgstr "Detecta cualquier archivo de configuracion GRUB2 (grub.cfg)"
+msgstr "Detecta cualquier archivo de configuración GRUB2 (grub.cfg)"
 
 #: menus/main.cfg:116
 #, fuzzy
 msgid "Detect any GRUB legacy configuration file (menu.lst)"
-msgstr "Detecta cualquier archivo de configuracion GRUB2 (grub.cfg)"
+msgstr "Detecta cualquier archivo de configuración GRUB2 (grub.cfg)"
 
 #: menus/main.cfg:121
 msgid "Detect any GRUB2 installation (even if mbr is overwritten)"
-msgstr "Detect cualquier instalacion de GRUB2 (aunque mbr este sobreescrito)"
+msgstr "Detect cualquier instalación de GRUB2 (aunque mbr este sobreescrito)"
 
 #: menus/main.cfg:126
 msgid "Detect loop bootable isos (in /boot-isos or /boot/boot-isos)"
@@ -49,7 +49,7 @@ msgstr "Detecta isos arrancables (en /boot-isos y /boot/boot-isos/)"
 
 #: menus/main.cfg:130
 msgid "Enable extra GRUB2 functionality..."
-msgstr ""
+msgstr "Activa funcionalidad extra de GRUB2..."
 
 #: menus/main.cfg:132
 msgid "Enable GRUB2's LVM support"
@@ -81,8 +81,8 @@ msgstr "Color SI/NO"
 
 #: menus/cfgdetect.cfg:48
 msgid "Error: Could not find any grub.cfg files."
-msgstr ""
+msgstr "Error: No se pudo encontrar ningún fichero grub.cfg"
 
 #: menus/menulstdetect.cfg:41
 msgid "Error: Could not find any legacy menu.lst files."
-msgstr ""
+msgstr "Error: No se pudo encontrar ningún fichero menu.lst"
