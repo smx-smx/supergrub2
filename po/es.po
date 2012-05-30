@@ -35,9 +35,8 @@ msgid "Detect any GRUB2 configuration file (grub.cfg)"
 msgstr "Detecta cualquier archivo de configuración GRUB2 (grub.cfg)"
 
 #: menus/main.cfg:116
-#, fuzzy
 msgid "Detect any GRUB legacy configuration file (menu.lst)"
-msgstr "Detecta cualquier archivo de configuración GRUB2 (grub.cfg)"
+msgstr "Detecta cualquier archivo de configuración GRUB antiguo (menu.lst)"
 
 #: menus/main.cfg:121
 msgid "Detect any GRUB2 installation (even if mbr is overwritten)"
