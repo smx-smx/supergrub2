@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Super GRUB2 Disk 2.0s1~beta1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-29 16:45-0700\n"
+"POT-Creation-Date: 2012-06-03 16:02-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jan Blank <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,67 +17,71 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: menus/main.cfg:97 menus/main.cfg:174 menus/cfgdetect.cfg:49
+#: menus/main.cfg:112 menus/main.cfg:196 menus/cfgdetect.cfg:49
 #: menus/menulstdetect.cfg:42
 msgid "Press escape to return to the main menu"
 msgstr ""
 
-#: menus/main.cfg:101
+#: menus/main.cfg:116
 msgid "Change language"
 msgstr "Sprache aendern"
 
-#: menus/main.cfg:106
+#: menus/main.cfg:121
 msgid "Detect any Operating System"
 msgstr "Betriebssysteme finden"
 
-#: menus/main.cfg:111
+#: menus/main.cfg:126
 msgid "Detect any GRUB2 configuration file (grub.cfg)"
 msgstr "GRUB2 Konfigurationsdateien finden (grub.cfg)"
 
-#: menus/main.cfg:116
+#: menus/main.cfg:131
 #, fuzzy
 msgid "Detect any GRUB legacy configuration file (menu.lst)"
 msgstr "GRUB2 Konfigurationsdateien finden (grub.cfg)"
 
-#: menus/main.cfg:121
+#: menus/main.cfg:136
 msgid "Detect any GRUB2 installation (even if mbr is overwritten)"
 msgstr "GRUB2 Installationen finden (auch bei ueberschriebenem mbr)"
 
-#: menus/main.cfg:126
+#: menus/main.cfg:141
 msgid "Detect loop bootable isos (in /boot-isos or /boot/boot-isos)"
 msgstr ""
 "In Schleife bootfaehige isos finden (in /boot-isos oder /boot/boot-isos)"
 
-#: menus/main.cfg:130
+#: menus/main.cfg:145
 msgid "Enable extra GRUB2 functionality..."
 msgstr ""
 
-#: menus/main.cfg:132
+#: menus/main.cfg:147
 msgid "Enable GRUB2's LVM support"
 msgstr "LVM Unterstuetzung von GRUB2 aktivieren"
 
-#: menus/main.cfg:136
+#: menus/main.cfg:151
 msgid "Enable GRUB2's RAID support"
 msgstr "RAID Unterstuetzung von GRUB2 aktivieren"
 
-#: menus/main.cfg:144
+#: menus/main.cfg:159
 msgid "Enable GRUB2's PATA support (to work around BIOS bugs/limitations)"
 msgstr ""
 "PATA Unterstuetzung von GRUB2 aktivieren (bei BIOS Bugs/Beschraenkungen)"
 
-#: menus/main.cfg:149
+#: menus/main.cfg:164
 msgid "Enable GRUB2's USB support *experimental*"
 msgstr "USB Unterstuetzung von GRUB2 aktivieren *experimentell*"
 
-#: menus/main.cfg:156
+#: menus/main.cfg:171
+msgid "Mount encrypted volums (LUKS and geli)"
+msgstr ""
+
+#: menus/main.cfg:178
 msgid "Enable serial terminal"
 msgstr "Serielles Terminal aktivieren"
 
-#: menus/main.cfg:163
+#: menus/main.cfg:185
 msgid "List devices/partitions"
 msgstr "Geraete/Partitionen auflisten"
 
-#: menus/main.cfg:178
+#: menus/main.cfg:200
 msgid "Color ON/OFF"
 msgstr "Farbe AN/AUS"
 
