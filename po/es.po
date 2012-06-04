@@ -67,8 +67,8 @@ msgid "Enable GRUB2's USB support *experimental*"
 msgstr "Activa soporte USB de GRUB2 *experimental*"
 
 #: menus/main.cfg:171
-msgid "Montar volumenes encriptados (LUKS y geli)"
-msgstr ""
+msgid "Mount encrypted volums (LUKS and geli)"
+msgstr "Montar volumenes encriptados (LUKS y geli)"
 
 #: menus/main.cfg:178
 msgid "Enable serial terminal"
