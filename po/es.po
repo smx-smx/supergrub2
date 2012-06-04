@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Super GRUB2 Disk 2.0s1~beta1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-03 16:02-0700\n"
+"POT-Creation-Date: 2012-06-04 11:13-0700\n"
 "PO-Revision-Date: 2012-06-04 02:41-0700\n"
 "Last-Translator: Adrian Gibanel Lopez <adrian15sgd@gmail.com>\n"
 "Language-Team: Spanish <adrian15sgd@gmail.com>\n"
@@ -67,7 +67,7 @@ msgid "Enable GRUB2's USB support *experimental*"
 msgstr "Activa soporte USB de GRUB2 *experimental*"
 
 #: menus/main.cfg:171
-msgid "Mount encrypted volums (LUKS and geli)"
+msgid "Mount encrypted volumes (LUKS and geli)"
 msgstr "Montar volumenes encriptados (LUKS y geli)"
 
 #: menus/main.cfg:178
