@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Super GRUB2 Disk 2.0s1~beta1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-04 11:13-0700\n"
+"POT-Creation-Date: 2012-07-02 21:08-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jan Blank <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: menus/main.cfg:112 menus/main.cfg:196 menus/cfgdetect.cfg:49
+#: menus/main.cfg:112 menus/main.cfg:201 menus/cfgdetect.cfg:49
 #: menus/menulstdetect.cfg:42
 msgid "Press escape to return to the main menu"
 msgstr ""
@@ -60,28 +60,32 @@ msgstr "LVM Unterstuetzung von GRUB2 aktivieren"
 msgid "Enable GRUB2's RAID support"
 msgstr "RAID Unterstuetzung von GRUB2 aktivieren"
 
-#: menus/main.cfg:159
+#: menus/main.cfg:160
 msgid "Enable GRUB2's PATA support (to work around BIOS bugs/limitations)"
 msgstr ""
 "PATA Unterstuetzung von GRUB2 aktivieren (bei BIOS Bugs/Beschraenkungen)"
 
-#: menus/main.cfg:164
+#: menus/main.cfg:165
 msgid "Enable GRUB2's USB support *experimental*"
 msgstr "USB Unterstuetzung von GRUB2 aktivieren *experimentell*"
 
-#: menus/main.cfg:171
+#: menus/main.cfg:172
 msgid "Mount encrypted volumes (LUKS and geli)"
 msgstr ""
 
-#: menus/main.cfg:178
+#: menus/main.cfg:179
 msgid "Enable serial terminal"
 msgstr "Serielles Terminal aktivieren"
 
 #: menus/main.cfg:185
+msgid "Return to main menu"
+msgstr ""
+
+#: menus/main.cfg:190
 msgid "List devices/partitions"
 msgstr "Geraete/Partitionen auflisten"
 
-#: menus/main.cfg:200
+#: menus/main.cfg:205
 msgid "Color ON/OFF"
 msgstr "Farbe AN/AUS"
 
