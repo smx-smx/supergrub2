@@ -1,0 +1,99 @@
+# Italian translation for Super GRUB2 Disk.
+# Copyright (C) 2009,2010,2011,2012  Adrian Gibanel Lopez, Jordan Edward Uggla
+# This file is distributed under the same license as the Super GRUB2 Disk package.
+# Jordan Edward Uggla <jordan.uggla@gmail.com>, 2012.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Super GRUB2 Disk 2.0s1~beta1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-07-02 21:08-0700\n"
+"PO-Revision-Date: 2012-07-06 21:14+01\n"
+"Last-Translator: Davide Depau <david.dep.1996@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+
+#: menus/main.cfg:112
+#: menus/main.cfg:201
+#: menus/cfgdetect.cfg:49
+#: menus/menulstdetect.cfg:42
+msgid "Press escape to return to the main menu"
+msgstr "Premi Esc per tornare al menu principale"
+
+#: menus/main.cfg:116
+msgid "Change language"
+msgstr "Cambia lingua"
+
+#: menus/main.cfg:121
+msgid "Detect any Operating System"
+msgstr "Cerca sistemi operativi"
+
+#: menus/main.cfg:126
+msgid "Detect any GRUB2 configuration file (grub.cfg)"
+msgstr "Cerca file di configurazione di GRUB2 (grub.cfg)"
+
+#: menus/main.cfg:131
+msgid "Detect any GRUB legacy configuration file (menu.lst)"
+msgstr "Cerca file di configurazione di GRUB Legacy"
+
+#: menus/main.cfg:136
+msgid "Detect any GRUB2 installation (even if mbr is overwritten)"
+msgstr "Cerca installazioni di GRUB2 (anche se il MBR è stato sovrascritto)"
+
+#: menus/main.cfg:141
+msgid "Detect loop bootable isos (in /boot-isos or /boot/boot-isos)"
+msgstr "Cerca immagini ISO avviabili come loop (in /boot-isos e /boot/boot-isos)"
+
+#: menus/main.cfg:145
+msgid "Enable extra GRUB2 functionality..."
+msgstr "Attiva funzioni opzionali di GRUB2..."
+
+#: menus/main.cfg:147
+msgid "Enable GRUB2's LVM support"
+msgstr "Abilita supporto a LVM di GRUB2"
+
+#: menus/main.cfg:151
+msgid "Enable GRUB2's RAID support"
+msgstr "Abilita supporto a RAID di GRUB2"
+
+#: menus/main.cfg:160
+msgid "Enable GRUB2's PATA support (to work around BIOS bugs/limitations)"
+msgstr "Abilita supporto a PATA di GRUB2 (per evitare bug/limitazioni del BIOS)"
+
+#: menus/main.cfg:165
+msgid "Enable GRUB2's USB support *experimental*"
+msgstr "Abilita supporto alle USB di GRUB2 (sperimentale)"
+
+#: menus/main.cfg:172
+msgid "Mount encrypted volumes (LUKS and geli)"
+msgstr "Monta volumi crittograffati (LUKS e geli)"
+
+#: menus/main.cfg:179
+msgid "Enable serial terminal"
+msgstr "Abilita terminale seriale"
+
+#: menus/main.cfg:185
+msgid "Return to main menu"
+msgstr "Torna al menu principale"
+
+#: menus/main.cfg:190
+msgid "List devices/partitions"
+msgstr "Elenca dischi/partizioni"
+
+#: menus/main.cfg:205
+msgid "Color ON/OFF"
+msgstr "Accendi/Spegni colore"
+
+#: menus/cfgdetect.cfg:48
+msgid "Error: Could not find any grub.cfg files."
+msgstr "Errore: Non è stato trovato alcun file grub.cfg."
+
+#: menus/menulstdetect.cfg:41
+msgid "Error: Could not find any legacy menu.lst files."
+msgstr "Errore: Non è stato trovato alcun file menu.lst."
+
