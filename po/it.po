@@ -27,7 +27,7 @@ msgstr "Premi Esc per tornare al menu principale"
 
 #: menus/main.cfg:116
 msgid "Change language"
-msgstr "Cambia lingua"
+msgstr "Scegli lingua..."
 
 #: menus/main.cfg:121
 msgid "Detect any Operating System"
@@ -47,11 +47,11 @@ msgstr "Cerca installazioni di GRUB2 (anche se il MBR è stato sovrascritto)"
 
 #: menus/main.cfg:141
 msgid "Detect loop bootable isos (in /boot-isos or /boot/boot-isos)"
-msgstr "Cerca immagini ISO avviabili come loop (in /boot-isos e /boot/boot-isos)"
+msgstr "Cerca immagini ISO avviabili (in /boot-isos e /boot/boot-isos)"
 
 #: menus/main.cfg:145
 msgid "Enable extra GRUB2 functionality..."
-msgstr "Attiva funzioni opzionali di GRUB2..."
+msgstr "Funzioni speciali di GRUB2..."
 
 #: menus/main.cfg:147
 msgid "Enable GRUB2's LVM support"
@@ -75,11 +75,11 @@ msgstr "Monta volumi crittograffati (LUKS e geli)"
 
 #: menus/main.cfg:179
 msgid "Enable serial terminal"
-msgstr "Abilita terminale seriale"
+msgstr "Abilita il terminale seriale"
 
 #: menus/main.cfg:185
 msgid "Return to main menu"
-msgstr "Torna al menu principale"
+msgstr "<- Torna al menu principale"
 
 #: menus/main.cfg:190
 msgid "List devices/partitions"
