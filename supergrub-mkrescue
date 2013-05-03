@@ -98,3 +98,8 @@ fi
 
 grub-mkrescue $default_options
 rm -r "$overlay"
+
+md5sum ${ISO_FILENAME} > ${ISO_FILENAME}.md5
+sha1sum ${ISO_FILENAME} > ${ISO_FILENAME}.sha1
+sha256sum ${ISO_FILENAME} > ${ISO_FILENAME}.sha256
+
