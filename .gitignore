@@ -1,0 +1,6 @@
+*\.iso
+*\.iso\.md5
+*\.iso\.sha1
+*\.iso\.sha256
+menus/language.cfg
+.directory
