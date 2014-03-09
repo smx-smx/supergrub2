@@ -2,16 +2,9 @@
 
 SUPER_GRUB2_DISK_FILE_PREFIX="super_grub2_disk"
 
-DEBIAN_GRUB2_SRC_DIR="/home/adrian/gnu/sgd/debian_grub2/grub2-2.00"
+export DEBIAN_FRONTEND=noninteractive
 
 SGD2_SOURCE_DIR="$(pwd)"
-
-function grub2_src_prepare () {
-  make clean
-  make distclean
-  bash linguas.sh
-  bash autogen.sh
-}
 
 function build_sg2d () {
 
@@ -21,18 +14,7 @@ function build_sg2d () {
 
 function clean_every_build () {
 
-  sudo rm -rf /usr/local/share/grub
-  sudo rm -rf /usr/local/lib/grub
-  grub2_src_prepare
-  ./configure --target=i386 --with-platform=efi && make && sudo make uninstall
-  make clean
-  make distclean
-  ./configure --target=i386 --with-platform=pc && make && sudo make uninstall
-  make clean
-  make distclean
-  ./configure --target=x86_64 --with-platform=efi && make && sudo make uninstall
-  make clean
-  make distclean
+  sudo apt-get -y remove grub-.*-bin
 
 }
 
@@ -40,15 +22,10 @@ function clean_every_build () {
 function grub2_sg2d_hybrid_build () {
 
   # Grub2 - Hybrid build
-
-  cd ${DEBIAN_GRUB2_SRC_DIR}
   clean_every_build
-  grub2_src_prepare
-  ./configure --target=i386 --with-platform=pc && make && sudo make install
-  make clean
-  make distclean
-  ./configure --target=x86_64 --with-platform=efi && make && sudo make install
-  cd ${SGD2_SOURCE_DIR}
+  sudo apt-get -y install \
+  grub-pc-bin \
+  grub-efi-amd64-bin
 
   # Super Grub2 Disk - Hybrid build
   TARGET_PLATFORM="hybrid"
@@ -59,13 +36,9 @@ function grub2_sg2d_hybrid_build () {
 function grub2_sg2d_i386_pc_build () {
 
   # Grub2 - i386 - pc build
-  cd ${DEBIAN_GRUB2_SRC_DIR}
   clean_every_build
-  grub2_src_prepare
-  bash lingua.sh
-  bash autogen.sh
-  ./configure --target=i386 --with-platform=pc && make && sudo make install
-  cd ${SGD2_SOURCE_DIR}
+  sudo apt-get -y install \
+  grub-pc-bin
 
   # Super Grub2 Disk - i386 - pc build
   TARGET_PLATFORM="i386_pc"
@@ -76,11 +49,9 @@ function grub2_sg2d_i386_pc_build () {
 function grub2_sg2d_x86_64_efi_build () {
 
   # Grub2 - x86_64 - efi build
-  cd ${DEBIAN_GRUB2_SRC_DIR}
   clean_every_build
-  grub2_src_prepare
-  ./configure --target=x86_64 --with-platform=efi && make && sudo make install
-  cd ${SGD2_SOURCE_DIR}
+  sudo apt-get -y install \
+  grub-efi-amd64-bin
 
   # Super Grub2 Disk - x86_64 - efi build
   TARGET_PLATFORM="x86_64_efi"
@@ -91,11 +62,9 @@ function grub2_sg2d_x86_64_efi_build () {
 function grub2_sg2d_i386_efi_build () {
 
   # Grub2 - i386 - efi build
-  cd ${DEBIAN_GRUB2_SRC_DIR}
   clean_every_build
-  grub2_src_prepare
-  ./configure --target=i386 --with-platform=efi && make && sudo make install
-  cd ${SGD2_SOURCE_DIR}
+  sudo apt-get -y install \
+  grub-efi-ia32-bin
 
   # Super Grub2 Disk - i386 - efi build
   TARGET_PLATFORM="i386_efi"
@@ -103,12 +72,32 @@ function grub2_sg2d_i386_efi_build () {
 
 }
 
+function grub2_sg2d_coreboot_build () {
 
-if [ ! -d "${DEBIAN_GRUB2_SRC_DIR}" ] ; then
+  # Grub2 - coreboot build
+  clean_every_build
+  sudo apt-get -y install \
+  grub-coreboot-bin
 
-  echo -e -n "Please set up a valid path for Debian Grub2 source code in this same file: ${0}\n"
+  # Super Grub2 Disk - coreboot build
+  TARGET_PLATFORM="coreboot"
+  build_sg2d
 
-fi
+}
+
+function grub2_sg2d_ieee1275_build () {
+
+  # Grub2 - ieee1275 build
+  clean_every_build
+  sudo apt-get -y install \
+  grub-ieee1275-bin
+
+  # Super Grub2 Disk - ieee1275 build
+  TARGET_PLATFORM="ieee1275"
+  build_sg2d
+
+}
+
 
 # Needed for getting SG2D version
 source menus/version.cfg
@@ -121,3 +110,6 @@ grub2_sg2d_i386_efi_build
 
 grub2_sg2d_hybrid_build
 
+grub2_sg2d_coreboot_build
+
+grub2_sg2d_ieee1275_build
