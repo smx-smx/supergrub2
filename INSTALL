@@ -1,5 +1,7 @@
 This file contains instructions for building Super GRUB2 Disk.
 
+Updated instructions will be found at: http://www.supergrubdisk.org/wiki/SuperGRUB2Disk#Development
+
 Requirements
 ================
 
@@ -11,12 +13,136 @@ GNU xorriso (it's a dependency of the grub-mkrescue utility which is part of GRU
 
 Unifont (which is also already a soft dependency of GRUB2).
 
-Build Super Grub2 Disk
-==========================
-You should be able to build Super Grub2 Disk from the source code directory with the following command:
+Chroot
+======
 
-./supergrub-mkrescue
+Although not strictly need you are encouraged to use a chroot for Super Grub2 Disk build. We will use a Debian Sid chroot.
 
-It should output a file called: super_grub2_disk_hybrid_<VERSION>.iso
+Please check: Super Grub2 Disk Sid Chroot in order to learn how to setup your Super Grub2 Disk sid chroot. 
 
-where <VERSION> is the Super Grub2 Disk's version.
+Super Grub2 Disk Sid Chroot
+===========================
+Introduction
+
+First of all you need to know that this is simply a Debian Sid Chroot. It's a amd64 chroot.
+
+The base OS that we are using is another Debian Sid. If you are not using a Debian based OS like Ubuntu you might need to use cdebootstrap instead of debootstrap.
+
+Chroot in this example is going to be installed in:
+
+/mnt/ssd/sgd_chroot_sid_amd64
+
+Please adapt to your needs.
+First setup
+
+So we cd to the parent directory of the directoy where our chroot will be created. And we invoke debootstrap
+
+cd /mnt/ssd/
+mkdir sgd_chroot_sid_amd64
+debootstrap --arch amd64 sid sgd_chroot_sid_amd64 http://http.debian.net/debian/
+
+Then we need to prepare our fstab to take care of mounting some auxiliar folders for the chroot so that it works ok. You can opt to mount them manually if you are not fancing of fstab doing it automatically. Please type all the command as root user
+
+cat << EOF | sudo tee -a /etc/fstab
+proc /mnt/ssd/sgd_chroot_sid_amd64/proc proc defaults 0 0
+sysfs /mnt/ssd/sgd_chroot_sid_amd64/sys sysfs defaults 0 0
+EOF
+
+I personally also add the home directory because I found it easier to work with from my main system. Be aware that you can delete all your files if you don't umount it before deleting the whole chroot.
+
+cat << EOF | sudo tee -a /etc/fstab
+/home /mnt/ssd/sgd_chroot_sid_amd64/home ext4 bind 0 0
+EOF
+
+Then you need to mount all these mounts with:
+
+mount -a
+
+Custom your Sid Chroot
+
+In order to enter into the Chroot you need to do:
+
+chroot /mnt/ssd/sgd_chroot_sid_amd64/ /bin/bash
+
+Once inside the chroot:
+
+    I add my usual user (which happens to be 1000 UID so that's ok with home files) 
+
+adduser myuser
+
+    I setup a password for it. 
+
+passwd myuser
+
+    I make sure that resolv.conf has a working nameserver 
+
+nano /etc/resolv.conf
+
+    I install sudo package 
+
+apt-get install sudo
+
+    I setup sudo so that my normal user has sudo permissions 
+
+sudoedit /etc/sudoers
+myuser  ALL=(ALL:ALL) ALL
+
+    I modify the chroot name so that I am aware of it 
+
+nano /etc/debian_chroot
+I write: SG2D_CHROOT inside it
+
+    Take rid of perl warning messages: 
+
+apt-get install debconf
+apt-get install locales
+nano /etc/locale.gen
+Uncomment # en_US.UTF-8 UTF-8 line and save
+locale-gen
+
+
+If I am inside the chroot and I want to work as my new normal user I can run:
+
+su myuser
+
+
+Super Grub2 Disk Sid Chroot Build
+=================================
+
+As explained in Super Grub2 Disk Sid Chroot you need to enter in the chroot thanks to:
+
+chroot /mnt/ssd/sgd_chroot_sid_amd64/ /bin/bash
+
+.
+
+We probably need to install git package
+
+apt-get install git
+
+Now we are going to work as a normal user
+
+su myuser
+
+so that we can work from our development directory.
+
+mkdir -p ~/gnu/sgd/supergrub2_upstream
+cd  ~/gnu/sgd/supergrub2_upstream
+
+Now we are going to get Super Grub2 Disk source code.
+
+git clone https://forja.cenatic.es/anonscm/git/supergrub2/supergrub2.git
+
+So that we can build it:
+
+cd supergrub2
+./supergrub-meta-mkrescue
+
+If everything went well and you did not miss any of the former steps you will get, among others, these files:
+
+super_grub2_disk_hybrid_2.00s1-beta6.iso
+super_grub2_disk_hybrid_2.00s1-beta6.iso.md5
+super_grub2_disk_hybrid_2.00s1-beta6.iso.sha1
+super_grub2_disk_hybrid_2.00s1-beta6.iso.sha256
+
+which their filename might vary depending on the current Super Grub2 Disk version. 
+
