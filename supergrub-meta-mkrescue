@@ -102,13 +102,13 @@ function grub2_sg2d_ieee1275_build () {
 # Needed for getting SG2D version
 source menus/version.cfg
 
+grub2_sg2d_hybrid_build
+
 grub2_sg2d_x86_64_efi_build
 
 grub2_sg2d_i386_pc_build
 
 grub2_sg2d_i386_efi_build
-
-grub2_sg2d_hybrid_build
 
 grub2_sg2d_coreboot_build
 
