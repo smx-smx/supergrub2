@@ -119,6 +119,10 @@ We probably need to install git package
 
 apt-get install git
 
+And other packages:
+
+apt-get install gettext unifont xorriso mtools
+
 Now we are going to work as a normal user
 
 su myuser
