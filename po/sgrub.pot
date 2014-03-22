@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-02 21:08-0700\n"
+"POT-Creation-Date: 2014-03-23 00:38+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,79 +17,184 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: menus/main.cfg:112 menus/main.cfg:201 menus/cfgdetect.cfg:49
-#: menus/menulstdetect.cfg:42
+#: menus/main.cfg:161 menus/main.cfg:238 menus/processenable.cfg:12
 msgid "Press escape to return to the main menu"
 msgstr ""
 
-#: menus/main.cfg:116
-msgid "Change language"
+#: menus/main.cfg:168 menus/main.cfg:173
+msgid "Everything"
 msgstr ""
 
-#: menus/main.cfg:121
-msgid "Detect any Operating System"
+#: menus/main.cfg:177
+msgid "Boot manually"
 msgstr ""
 
-#: menus/main.cfg:126
-msgid "Detect any GRUB2 configuration file (grub.cfg)"
+#: menus/main.cfg:197
+msgid "Extra GRUB2 functionality"
 msgstr ""
 
-#: menus/main.cfg:131
-msgid "Detect any GRUB legacy configuration file (menu.lst)"
+#: menus/main.cfg:216
+msgid "Extra Search functionality"
 msgstr ""
 
-#: menus/main.cfg:136
-msgid "Detect any GRUB2 installation (even if mbr is overwritten)"
-msgstr ""
-
-#: menus/main.cfg:141
-msgid "Detect loop bootable isos (in /boot-isos or /boot/boot-isos)"
-msgstr ""
-
-#: menus/main.cfg:145
-msgid "Enable extra GRUB2 functionality..."
-msgstr ""
-
-#: menus/main.cfg:147
-msgid "Enable GRUB2's LVM support"
-msgstr ""
-
-#: menus/main.cfg:151
-msgid "Enable GRUB2's RAID support"
-msgstr ""
-
-#: menus/main.cfg:160
-msgid "Enable GRUB2's PATA support (to work around BIOS bugs/limitations)"
-msgstr ""
-
-#: menus/main.cfg:165
-msgid "Enable GRUB2's USB support *experimental*"
-msgstr ""
-
-#: menus/main.cfg:172
-msgid "Mount encrypted volumes (LUKS and geli)"
-msgstr ""
-
-#: menus/main.cfg:179
-msgid "Enable serial terminal"
-msgstr ""
-
-#: menus/main.cfg:185
-msgid "Return to main menu"
-msgstr ""
-
-#: menus/main.cfg:190
+#: menus/main.cfg:227
 msgid "List devices/partitions"
 msgstr ""
 
-#: menus/main.cfg:205
+#: menus/main.cfg:242
 msgid "Color ON/OFF"
 msgstr ""
 
-#: menus/cfgdetect.cfg:48
-msgid "Error: Could not find any grub.cfg files."
+#: menus/main.cfg:252
+msgid "Exit"
 msgstr ""
 
-#: menus/menulstdetect.cfg:41
-msgid "Error: Could not find any legacy menu.lst files."
+#: menus/cfgdetect.cfg:19
+msgid "(GRUB2 configuration files)"
+msgstr ""
+
+#: menus/cfgdetect.cfg:55 menus/cfgextract.cfg:54
+msgid "(No grub.cfg file detected)"
+msgstr ""
+
+#: menus/menulstdetect.cfg:19
+msgid "(GRUB legacy configuration files)"
+msgstr ""
+
+#: menus/menulstdetect.cfg:48
+msgid "(No menu.lst file detected)"
+msgstr ""
+
+#: menus/autoiso.cfg:18
+msgid "Bootable ISOs"
+msgstr ""
+
+#: menus/autoiso.cfg:18
+msgid "(in /boot-isos or /boot/boot-isos)"
+msgstr ""
+
+#: menus/cfgextract.cfg:19
+msgid "Extract entries"
+msgstr ""
+
+#: menus/cfgextract.cfg:43
+msgid "Entries from"
+msgstr ""
+
+#: menus/enableencrypted.cfg:18
+msgid "Mount encrypted volumes"
+msgstr ""
+
+#: menus/enableencrypted.cfg:18
+msgid "(LUKS and geli)"
+msgstr ""
+
+#: menus/enablelvm.cfg:18
+msgid "Enable GRUB2's LVM support"
+msgstr ""
+
+#: menus/enablepata.cfg:18
+msgid "Enable GRUB2's PATA support"
+msgstr ""
+
+#: menus/enablepata.cfg:18
+msgid "(to work around BIOS bugs/limitations)"
+msgstr ""
+
+#: menus/enableraid.cfg:18
+msgid "Enable GRUB2's RAID support"
+msgstr ""
+
+#: menus/enableserial.cfg:18
+msgid "Enable serial terminal"
+msgstr ""
+
+#: menus/enableusb.cfg:18
+msgid "Enable GRUB2's USB support"
+msgstr ""
+
+#: menus/enableusb.cfg:18
+msgid "experimental"
+msgstr ""
+
+#: menus/everythingplus.cfg:6 menus/processenable.cfg:4
+msgid "Begin processing"
+msgstr ""
+
+#: menus/everythingplus.cfg:8 menus/processenable.cfg:6
+msgid "End processing"
+msgstr ""
+
+#: menus/everythingplus.cfg:14
+msgid "Press escape to continue"
+msgstr ""
+
+#: menus/everythingplus.cfg:14 menus/processenable.cfg:12
+msgid "(or wait 5 seconds)"
+msgstr ""
+
+#: menus/grubdetect.cfg:24
+msgid "core.img - "
+msgstr ""
+
+#: menus/grubdetect.cfg:24
+msgid "(GRUB2 installation (even if mbr is overwritten))"
+msgstr ""
+
+#: menus/grubdetect.cfg:57
+msgid "(No core.img file detected)"
+msgstr ""
+
+#: menus/halt.cfg:19
+msgid "Halt"
+msgstr ""
+
+#: menus/language_select.cfg:19
+msgid "Languages"
+msgstr ""
+
+#: menus/osdetect.cfg:21
+msgid "Operating Systems"
+msgstr ""
+
+#: menus/osdetect.cfg:339
+msgid "Sorry, but we are booted via BIOS and can not load this OS."
+msgstr ""
+
+#: menus/osdetect.cfg:340
+msgid "Please try booting SG2D via UEFI."
+msgstr ""
+
+#: menus/osdetect.cfg:341
+msgid "Press escape to return to the menu"
+msgstr ""
+
+#: menus/reboot.cfg:19
+msgid "Reboot"
+msgstr ""
+
+#: menus/return.cfg:1
+msgid "Return to main menu"
+msgstr ""
+
+#: menus/searchcdrom.cfg:18
+msgid "Search in CDROM ON/OFF"
+msgstr ""
+
+#: menus/searchcdrom.cfg:18 menus/searchfloppy.cfg:18
+msgid "(Default: OFF)"
+msgstr ""
+
+#: menus/searchcdrom.cfg:28
+#, sh-format
+msgid "Search in CDROM: ${cdsearch}"
+msgstr ""
+
+#: menus/searchfloppy.cfg:18
+msgid "Search in floppy ON/OFF"
+msgstr ""
+
+#: menus/searchfloppy.cfg:28
+#, sh-format
+msgid "Search in FLOPPY: ${fd0search}"
 msgstr ""
