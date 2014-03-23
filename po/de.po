@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Super GRUB2 Disk 2.0s1~beta1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-02 21:08-0700\n"
+"POT-Creation-Date: 2014-03-23 01:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jan Blank <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,82 +17,191 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: menus/main.cfg:112 menus/main.cfg:201 menus/cfgdetect.cfg:49
-#: menus/menulstdetect.cfg:42
+#: menus/main.cfg:161 menus/main.cfg:238 menus/processenable.cfg:12
 msgid "Press escape to return to the main menu"
 msgstr ""
 
-#: menus/main.cfg:116
-msgid "Change language"
-msgstr "Sprache aendern"
-
-#: menus/main.cfg:121
-msgid "Detect any Operating System"
-msgstr "Betriebssysteme finden"
-
-#: menus/main.cfg:126
-msgid "Detect any GRUB2 configuration file (grub.cfg)"
-msgstr "GRUB2 Konfigurationsdateien finden (grub.cfg)"
-
-#: menus/main.cfg:131
-#, fuzzy
-msgid "Detect any GRUB legacy configuration file (menu.lst)"
-msgstr "GRUB2 Konfigurationsdateien finden (grub.cfg)"
-
-#: menus/main.cfg:136
-msgid "Detect any GRUB2 installation (even if mbr is overwritten)"
-msgstr "GRUB2 Installationen finden (auch bei ueberschriebenem mbr)"
-
-#: menus/main.cfg:141
-msgid "Detect loop bootable isos (in /boot-isos or /boot/boot-isos)"
-msgstr ""
-"In Schleife bootfaehige isos finden (in /boot-isos oder /boot/boot-isos)"
-
-#: menus/main.cfg:145
-msgid "Enable extra GRUB2 functionality..."
+#: menus/main.cfg:168 menus/main.cfg:173
+msgid "Everything"
 msgstr ""
 
-#: menus/main.cfg:147
-msgid "Enable GRUB2's LVM support"
-msgstr "LVM Unterstuetzung von GRUB2 aktivieren"
-
-#: menus/main.cfg:151
-msgid "Enable GRUB2's RAID support"
-msgstr "RAID Unterstuetzung von GRUB2 aktivieren"
-
-#: menus/main.cfg:160
-msgid "Enable GRUB2's PATA support (to work around BIOS bugs/limitations)"
-msgstr ""
-"PATA Unterstuetzung von GRUB2 aktivieren (bei BIOS Bugs/Beschraenkungen)"
-
-#: menus/main.cfg:165
-msgid "Enable GRUB2's USB support *experimental*"
-msgstr "USB Unterstuetzung von GRUB2 aktivieren *experimentell*"
-
-#: menus/main.cfg:172
-msgid "Mount encrypted volumes (LUKS and geli)"
+#: menus/main.cfg:177
+msgid "Boot manually"
 msgstr ""
 
-#: menus/main.cfg:179
-msgid "Enable serial terminal"
-msgstr "Serielles Terminal aktivieren"
-
-#: menus/main.cfg:185
-msgid "Return to main menu"
+#: menus/main.cfg:197
+msgid "Extra GRUB2 functionality"
 msgstr ""
 
-#: menus/main.cfg:190
+#: menus/main.cfg:216
+msgid "Extra Search functionality"
+msgstr ""
+
+#: menus/main.cfg:227
 msgid "List devices/partitions"
 msgstr "Geraete/Partitionen auflisten"
 
-#: menus/main.cfg:205
+#: menus/main.cfg:242
 msgid "Color ON/OFF"
 msgstr "Farbe AN/AUS"
 
-#: menus/cfgdetect.cfg:48
-msgid "Error: Could not find any grub.cfg files."
+#: menus/main.cfg:252
+msgid "Exit"
 msgstr ""
 
-#: menus/menulstdetect.cfg:41
-msgid "Error: Could not find any legacy menu.lst files."
+#: menus/cfgdetect.cfg:19
+#, fuzzy
+msgid "(GRUB2 configuration files)"
+msgstr "GRUB2 Konfigurationsdateien finden (grub.cfg)"
+
+#: menus/cfgdetect.cfg:55 menus/cfgextract.cfg:54
+msgid "(No grub.cfg file detected)"
 msgstr ""
+
+#: menus/menulstdetect.cfg:19
+#, fuzzy
+msgid "(GRUB legacy configuration files)"
+msgstr "GRUB2 Konfigurationsdateien finden (grub.cfg)"
+
+#: menus/menulstdetect.cfg:48
+msgid "(No menu.lst file detected)"
+msgstr ""
+
+#: menus/autoiso.cfg:18
+msgid "Bootable ISOs"
+msgstr ""
+
+#: menus/autoiso.cfg:18
+#, fuzzy
+msgid "(in /boot-isos or /boot/boot-isos)"
+msgstr ""
+"In Schleife bootfaehige isos finden (in /boot-isos oder /boot/boot-isos)"
+
+#: menus/cfgextract.cfg:19
+msgid "Extract entries"
+msgstr ""
+
+#: menus/cfgextract.cfg:43
+msgid "Entries from"
+msgstr ""
+
+#: menus/enableencrypted.cfg:18
+msgid "Mount encrypted volumes"
+msgstr ""
+
+#: menus/enableencrypted.cfg:18
+msgid "(LUKS and geli)"
+msgstr ""
+
+#: menus/enablelvm.cfg:18
+msgid "Enable GRUB2's LVM support"
+msgstr "LVM Unterstuetzung von GRUB2 aktivieren"
+
+#: menus/enablepata.cfg:18
+#, fuzzy
+msgid "Enable GRUB2's PATA support"
+msgstr "RAID Unterstuetzung von GRUB2 aktivieren"
+
+#: menus/enablepata.cfg:18
+#, fuzzy
+msgid "(to work around BIOS bugs/limitations)"
+msgstr ""
+"PATA Unterstuetzung von GRUB2 aktivieren (bei BIOS Bugs/Beschraenkungen)"
+
+#: menus/enableraid.cfg:18
+msgid "Enable GRUB2's RAID support"
+msgstr "RAID Unterstuetzung von GRUB2 aktivieren"
+
+#: menus/enableserial.cfg:18
+msgid "Enable serial terminal"
+msgstr "Serielles Terminal aktivieren"
+
+#: menus/enableusb.cfg:18
+#, fuzzy
+msgid "Enable GRUB2's USB support"
+msgstr "LVM Unterstuetzung von GRUB2 aktivieren"
+
+#: menus/enableusb.cfg:18
+msgid "experimental"
+msgstr ""
+
+#: menus/everythingplus.cfg:6 menus/processenable.cfg:4
+msgid "Begin processing"
+msgstr ""
+
+#: menus/everythingplus.cfg:8 menus/processenable.cfg:6
+msgid "End processing"
+msgstr ""
+
+#: menus/everythingplus.cfg:14
+msgid "Press escape to continue"
+msgstr ""
+
+#: menus/everythingplus.cfg:14 menus/processenable.cfg:12
+msgid "(or wait 5 seconds)"
+msgstr ""
+
+#: menus/grubdetect.cfg:24
+#, fuzzy
+msgid "(GRUB2 installation (even if mbr is overwritten))"
+msgstr "GRUB2 Installationen finden (auch bei ueberschriebenem mbr)"
+
+#: menus/grubdetect.cfg:57
+msgid "(No core.img file detected)"
+msgstr ""
+
+#: menus/halt.cfg:19
+msgid "Halt"
+msgstr ""
+
+#: menus/language_select.cfg:19
+msgid "Languages"
+msgstr ""
+
+#: menus/osdetect.cfg:21
+#, fuzzy
+msgid "Operating Systems"
+msgstr "Betriebssysteme finden"
+
+#: menus/osdetect.cfg:339
+msgid "Sorry, but we are booted via BIOS and can not load this OS."
+msgstr ""
+
+#: menus/osdetect.cfg:340
+msgid "Please try booting SG2D via UEFI."
+msgstr ""
+
+#: menus/osdetect.cfg:341
+msgid "Press escape to return to the menu"
+msgstr ""
+
+#: menus/reboot.cfg:19
+msgid "Reboot"
+msgstr ""
+
+#: menus/return.cfg:1
+msgid "Return to main menu"
+msgstr ""
+
+#: menus/searchcdrom.cfg:18 menus/searchcdrom.cfg:28
+msgid "Search in CDROM"
+msgstr ""
+
+#: menus/searchcdrom.cfg:18 menus/searchfloppy.cfg:18
+#, fuzzy
+msgid "ON/OFF"
+msgstr "Farbe AN/AUS"
+
+#: menus/searchcdrom.cfg:18 menus/searchfloppy.cfg:18
+msgid "(Default: OFF)"
+msgstr ""
+
+#: menus/searchfloppy.cfg:18 menus/searchfloppy.cfg:28
+msgid "Search in floppy"
+msgstr ""
+
+#~ msgid "Change language"
+#~ msgstr "Sprache aendern"
+
+#~ msgid "Enable GRUB2's USB support *experimental*"
+#~ msgstr "USB Unterstuetzung von GRUB2 aktivieren *experimentell*"
