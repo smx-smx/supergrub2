@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-23 00:56+0100\n"
+"POT-Creation-Date: 2014-03-23 01:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -185,10 +185,6 @@ msgstr ""
 msgid "(Default: OFF)"
 msgstr ""
 
-#: menus/searchfloppy.cfg:18
+#: menus/searchfloppy.cfg:18 menus/searchfloppy.cfg:28
 msgid "Search in floppy"
-msgstr ""
-
-#: menus/searchfloppy.cfg:28
-msgid "Search in FLOPPY"
 msgstr ""

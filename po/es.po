@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Super GRUB2 Disk 2.0s1~beta1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-23 00:55+0100\n"
+"POT-Creation-Date: 2014-03-23 01:11+0100\n"
 "PO-Revision-Date: 2012-06-04 02:41-0700\n"
 "Last-Translator: Adrian Gibanel Lopez <adrian15sgd@gmail.com>\n"
 "Language-Team: Spanish <adrian15sgd@gmail.com>\n"
@@ -184,11 +184,7 @@ msgstr "SI(ON)/NO(OFF)"
 msgid "(Default: OFF)"
 msgstr "Por defecto: NO(OFF)"
 
-#: menus/searchfloppy.cfg:18
+#: menus/searchfloppy.cfg:18 menus/searchfloppy.cfg:28
 msgid "Search in floppy"
-msgstr "Busqueda en CDROM"
-
-#: menus/searchfloppy.cfg:28
-msgid "Search in FLOPPY"
 msgstr "Busqueda en disquete"
 
