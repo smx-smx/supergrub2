@@ -30,6 +30,8 @@ done
 
 # Get the version number for this Super GRUB2 Disk release
 source menus/version.cfg
+# Get common library for supergrub-mk commands
+source supergrub-mkcommon
 
 
 BOOT_ISOS_DIRECTORY="boot-isos"
@@ -41,60 +43,12 @@ if [[ "x$CUSTOM_ISO_FILENAME" != x ]] ; then
 fi
 
 default_options="--output=${ISO_FILENAME} $overlay"
-mkdir -p "$overlay/boot/grub/"
-cp -r menus/* "$overlay/boot/grub/"
-if [ -d ${BOOT_ISOS_DIRECTORY} ] ; then
-  cp -r ${BOOT_ISOS_DIRECTORY} "$overlay/boot/"
-fi
 
-cp AUTHORS COPYING "$overlay/boot/grub/"
-
-# Generate mo files and add them to overlay
-for pofile in po/*.po; do
-  basename=${pofile##*/}
-  lang_code="${basename%.po}"
-  info_cfg="menus/sgd_locale/${lang_code}_info.cfg"
-  msgfmt "$pofile" --output-file="$overlay/boot/grub/sgd_locale/${lang_code}.mo"
-  if ! [[ -f "$info_cfg" ]]; then
-    echo "Thank you for providing a new translation for Super GRUB2 Disk!"
-    echo "Before this translation can be used in Super GRUB2 Disk we need to know what"
-    echo "to call it in our language selection menu."
-    echo "We need to know the name of the language you've translated, in that language."
-    echo "For example, for Spanish you would enter \"Español\" (without the quotes)."
-    echo -n "Please enter the name of the language for $pofile: "
-    read language_name
-    cp info_cfg_header.cfg "$info_cfg"
-    echo "lang_code='${lang_code}'" >> "$info_cfg"
-
-    # This will fail if $language_name contains a single quote character.
-    # TODO: Fix aforementioned problem by escaping quotes in $language_name.
-    echo "language_name='${language_name}'" >> "$info_cfg"
-
-    echo "A file, ${info_cfg}, was created with this information."
-    echo "Thanks again for contributing a new translation!"
-    echo; echo
-  fi
-done
-
-# Find unifont font file to create grub font. This is needed for gfxterm in grub, which
-# in turn is needed for displaying non-ASCII characters for non-English translations.
-# This unifont finding code was copied from grub's configure.ac.
-for ext in pcf pcf.gz bdf bdf.gz ttf ttf.gz; do
-  for dir in . /usr/src /usr/share/fonts/X11/misc /usr/share/fonts/unifont; do
-    if test -f "$dir/unifont.$ext"; then
-      font_source="$dir/unifont.$ext"
-      break 2
-    fi
-  done
-done
-
-if [[ -n "$font_source" ]]; then
-  grub-mkfont "$font_source" --output="$overlay/boot/grub/unifont.pf2"
-else
-  echo "Error: Unifont not found. Unifont is needed for Super GRUB2 Disk" >&2
-  echo "to properly display non-ASCII characters. Aborting without creating an iso." >&2
-  exit 1
-fi
+init_overlay_dir
+copy_boot_isos_directory
+copy_copyright
+generate_and_copy_mo_files
+check_unifont
 
 grub-mkrescue $default_options
 rm -r "$overlay"
