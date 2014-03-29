@@ -1,0 +1,70 @@
+#!/bin/bash -e
+usage() {
+cat <<EOF
+
+  $0 -o=output.iso
+  Copyright Adrian Gibanel Lopez
+  Licensed under the GNU PUBLIC LICENSE 3.0
+
+  CREATE CALL
+  ===========
+
+  Usage: $0 [-o=FILENAME] [-O=FORMAT]
+  Example: $0 -o=myrescatux.iso
+  Example: $0 -o=myrescatux.iso -O=i386-pc-pxe
+
+  Formats are found at: 'man grub-mkstandalone'
+
+
+EOF
+
+}
+# Check the arguments.
+for option in "$@"; do
+  case "$option" in
+    -h | --help)
+      usage
+      exit 0
+    ;;
+    -o=*)
+      CUSTOM_ISO_FILENAME=`echo "$option" | sed 's/-o=//'`
+    ;;
+    -O=*)
+      CUSTOM_FORMAT=`echo "$option" | sed 's/-O=//'`
+    ;;
+  esac
+done
+
+# Get the version number for this Super GRUB2 Disk release
+source menus/version.cfg
+# Get common library for supergrub-mk commands
+source supergrub-mkcommon
+
+
+BOOT_ISOS_DIRECTORY="boot-isos"
+overlay=$(mktemp -d)
+ISO_FILENAME="super_grub2_disk_standalone_${sgrub_version}.iso"
+
+if [[ "x$CUSTOM_ISO_FILENAME" != x ]] ; then
+  ISO_FILENAME="${CUSTOM_ISO_FILENAME}"
+fi
+
+default_options="--output=${ISO_FILENAME} $overlay"
+
+if [[ "x$CUSTOM_FORMAT" != x ]] ; then
+  default_options="-O ${CUSTOM_FORMAT} ${default_options}"
+fi
+
+init_overlay_dir
+copy_boot_isos_directory
+copy_copyright
+generate_and_copy_mo_files
+check_unifont
+
+grub-mkstandalone $default_options
+rm -r "$overlay"
+
+md5sum ${ISO_FILENAME} > ${ISO_FILENAME}.md5
+sha1sum ${ISO_FILENAME} > ${ISO_FILENAME}.sha1
+sha256sum ${ISO_FILENAME} > ${ISO_FILENAME}.sha256
+
