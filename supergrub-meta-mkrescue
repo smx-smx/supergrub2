@@ -12,6 +12,17 @@ function build_sg2d () {
 
 }
 
+function build_sg2d_standalone () {
+
+  ./supergrub-mkstandalone  \
+    -O=${STANDALONE_FORMAT} \
+    -o="${SUPER_GRUB2_DISK_FILE_PREFIX}\
+_${TARGET_PLATFORM}\
+_standalone_\
+${STANDALONE_FORMAT_STR}_${sgrub_version}.${STANDALONE_EXTENSION}"
+
+}
+
 function clean_every_build () {
 
   sudo apt-get -y remove grub-.*-bin
@@ -57,6 +68,11 @@ function grub2_sg2d_x86_64_efi_build () {
   TARGET_PLATFORM="x86_64_efi"
   build_sg2d
 
+  STANDALONE_FORMAT_STR="x86_64_efi"
+  STANDALONE_FORMAT="x86_64-efi"
+  STANDALONE_EXTENSION="EFI"
+  build_sg2d_standalone
+
 }
 
 function grub2_sg2d_i386_efi_build () {
@@ -69,6 +85,11 @@ function grub2_sg2d_i386_efi_build () {
   # Super Grub2 Disk - i386 - efi build
   TARGET_PLATFORM="i386_efi"
   build_sg2d
+
+  STANDALONE_FORMAT_STR="i386_efi"
+  STANDALONE_FORMAT="i386-efi"
+  STANDALONE_EXTENSION="EFI"
+  build_sg2d_standalone
 
 }
 
@@ -83,6 +104,11 @@ function grub2_sg2d_coreboot_build () {
   TARGET_PLATFORM="coreboot"
   build_sg2d
 
+  STANDALONE_FORMAT_STR="i386_coreboot"
+  STANDALONE_FORMAT="i386-coreboot"
+  STANDALONE_EXTENSION="img"
+  build_sg2d_standalone
+
 }
 
 function grub2_sg2d_ieee1275_build () {
@@ -95,6 +121,11 @@ function grub2_sg2d_ieee1275_build () {
   # Super Grub2 Disk - ieee1275 build
   TARGET_PLATFORM="ieee1275"
   build_sg2d
+
+  STANDALONE_FORMAT_STR="i386_ieee1275"
+  STANDALONE_FORMAT="i386-ieee1275"
+  STANDALONE_EXTENSION="img"
+  build_sg2d_standalone
 
 }
 
