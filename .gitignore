@@ -2,5 +2,13 @@
 *\.iso\.md5
 *\.iso\.sha1
 *\.iso\.sha256
+*\.img
+*\.img\.md5
+*\.img\.sha1
+*\.img\.sha256
+*\.EFI
+*\.EFI\.md5
+*\.EFI\.sha1
+*\.EFI\.sha256
 menus/language.cfg
 .directory
