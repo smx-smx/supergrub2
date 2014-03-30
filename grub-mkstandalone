@@ -61,6 +61,7 @@ usage () {
     # TRANSLATORS: platform here isn't identifier. It can be translated.
     dir_msg="$(gettext_printf "use images and modules under DIR [default=%s/<platform>]" "${libdir}/grub")"
     print_option_help "-d, --directory=$(gettext "DIR")" "$dir_msg"
+    print_option_help "-Y, --overlay=$(gettext "DIR")" "$(gettext "use DIR as overlay directory")"
     print_option_help "-O, --format=$(gettext "FORMAT")" "$(gettext "generate an image in FORMAT")"; echo
     print_option_help "" "$(gettext "available formats:") $formats"
     echo
@@ -110,6 +111,11 @@ do
 	source_directory=`argument $option "$@"`; shift ;;
     --directory=*)
 	source_directory=`echo "$option" | sed 's/--directory=//'` ;;
+
+    --overlay | -Y)
+	overlay_directory=`argument $option "$@"`; shift ;;
+    --overlay=*)
+	overlay_directory=`echo "$option" | sed 's/--overlay=//'` ;;
 
     --grub-mkimage)
 	grub_mkimage=`argument $option "$@"`; shift ;;
@@ -193,6 +199,12 @@ done
 for file in $source; do
     cp -f "$file" "${memdisk_dir}"/"$file";
 done
+
+if [ "x$overlay_directory" != x ] ; then
+
+  cp -r "${overlay_directory}"/* "${memdisk_dir}"/
+
+fi
 
 memdisk_img=`mktemp "${TMPDIR:-/tmp}/tmp.XXXXXXXXXX"` || exit 1
 
