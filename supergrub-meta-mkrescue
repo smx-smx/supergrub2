@@ -17,7 +17,6 @@ function build_sg2d_standalone () {
   ./supergrub-mkstandalone  \
     -O=${STANDALONE_FORMAT} \
     -o="${SUPER_GRUB2_DISK_FILE_PREFIX}\
-_${TARGET_PLATFORM}\
 _standalone_\
 ${STANDALONE_FORMAT_STR}_${sgrub_version}.${STANDALONE_EXTENSION}"
 
