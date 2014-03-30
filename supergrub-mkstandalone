@@ -49,7 +49,7 @@ if [[ "x$CUSTOM_ISO_FILENAME" != x ]] ; then
   ISO_FILENAME="${CUSTOM_ISO_FILENAME}"
 fi
 
-default_options="--output=${ISO_FILENAME} $overlay"
+default_options="--output=${ISO_FILENAME} --overlay=${overlay}"
 
 if [[ "x$CUSTOM_FORMAT" != x ]] ; then
   default_options="-O ${CUSTOM_FORMAT} ${default_options}"
@@ -61,7 +61,7 @@ copy_copyright
 generate_and_copy_mo_files
 check_unifont
 
-grub-mkstandalone $default_options
+./grub-mkstandalone $default_options
 rm -r "$overlay"
 
 md5sum ${ISO_FILENAME} > ${ISO_FILENAME}.md5
