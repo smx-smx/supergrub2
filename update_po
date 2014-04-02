@@ -10,8 +10,8 @@ for pofile in po/*.po; do
   msgmerge "$pofile" po/sgrub.pot -U
 done
 
-if [ ! -d menus/sgd_locale/layouts ]; then
-	mkdir menus/sgd_locale/layouts
+if [ ! -d menus/layouts ]; then
+	mkdir menus/layouts
 fi
 
 for keymap in /usr/share/X11/xkb/symbols/*; do
