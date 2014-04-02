@@ -9,3 +9,24 @@ xgettext --files-from=xgettext_file_list --language=shell --output=po/sgrub.pot
 for pofile in po/*.po; do
   msgmerge "$pofile" po/sgrub.pot -U
 done
+
+if [ ! -d menus/sgd_locale/layouts ]; then
+	mkdir menus/sgd_locale/layouts
+fi
+
+for keymap in /usr/share/X11/xkb/symbols/*; do
+	if [ -f $keymap ]; then
+		echo "Generating $(basename $keymap).gkb ..."
+		ckbcomp $(basename $keymap) | grub-mklayout -o menus/layouts/$(basename $keymap).gkb
+	elif [ -d $keymap ]; then
+		vndr=${keymap//_vndr}
+		vndr=$(basename $vndr)
+		echo "Adding Custom Vendor: $vndr"
+		for custmap in $keymap/*; do
+			if [ -f $custmap ]; then
+				echo "Generating "$vndr"_$(basename $custmap).gkb ..."
+				ckbcomp $(basename $keymap)/$(basename $custmap) | grub-mklayout -o menus/layouts/"$vndr"_$(basename $custmap).gkb
+			fi
+		done
+	fi
+done
