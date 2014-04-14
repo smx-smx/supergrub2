@@ -129,17 +129,28 @@ function grub2_sg2d_ieee1275_build () {
 }
 
 
+function fancyprint(){
+local str="$1"
+str=$(echo $str | sed 's/\t/\ \ \ \ /g')
+local tabs=$(expr ${#str} + 2)
+for ((i=0; i<$tabs; i++)); do printf "-"; done
+printf "\n|$str|\n"
+for ((i=0; i<$tabs; i++)); do printf "-"; done
+printf "\n"
+}
+
 # Needed for getting SG2D version
 source menus/version.cfg
-
+fancyprint "NOW BUILDING: HYBRID"
 grub2_sg2d_hybrid_build
-
+fancyprint "NOW BUILDING: X86_64_EFI"
 grub2_sg2d_x86_64_efi_build
-
+fancyprint "NOW BUILDING: I386_PC"
 grub2_sg2d_i386_pc_build
-
+fancyprint "NOW BUILDING: I386_EFI"
 grub2_sg2d_i386_efi_build
-
+fancyprint "NOW BUILDING: COREBOOT"
 grub2_sg2d_coreboot_build
-
+fancyprint "NOW BUILDING: IEEE1275"
 grub2_sg2d_ieee1275_build
+echo "ALL DONE!"

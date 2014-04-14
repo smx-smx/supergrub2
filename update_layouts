@@ -1,0 +1,184 @@
+#!/bin/bash
+lyellow='printf \033[01;33m'
+lgreen='printf \033[01;32m'
+yellow='printf \033[00;33m'
+lred='printf \033[01;31m'
+lblue='printf \033[01;34m'
+normal='tput sgr0'
+
+use_variants=0
+use_comp=0
+use_tarxz=0
+debug=0
+quiet=0
+
+function usage(){
+echo "$(basename ${BASH_SOURCE[0]}), Super Grub2 Disk keymap generator by SMX"
+echo "${BASH_SOURCE[0]} <options>"
+printf " -q|--quiet\t\tquiet (suppress warnings)\n"
+printf " -v|--use-variants\tgenerate keymap variants\n"
+printf " -c|--use-comp\t\tuse XZ compression for gkb\n"
+printf " -t|--use-tarxz\t\tpack gkb files in tarxz\n"
+}
+
+PARSED_OPTIONS=$(getopt -n "$0" --options vctqhd --long "debug,help,quiet,use-variants,use-comp,use-tarxz" -- "$@")
+ 
+if [ $? -ne 0 ];
+then
+  exit 1
+fi
+
+eval set -- "$PARSED_OPTIONS"
+ 
+while true;
+do
+	case "$1" in
+		-v|--use-variants)
+			$lyellow; echo "---USING VARIANTS---"; $normal
+			use_variants=1
+			shift;;
+
+		-c|--use-comp)
+			$lyellow; echo "---USING XZ COMPRESSION---"; $normal
+			use_comp=1
+			shift;;
+ 
+		-t|--use-tarxz)
+			$lyellow; echo "---USING TAR XZ ARCHIVING---"; $normal
+			use_tarxz=1
+			shift;;
+
+		-q|--quiet)
+			$lyellow; echo "---SUPPRESSING STDERR---"; $normal
+			quiet=1
+			shift;;
+
+		-d|--debug)
+			$lyellow; echo "---ENABLING DEBUG---"; $normal
+			debug=1
+			shift;;
+
+		-h|--help)
+			usage
+			exit
+			;;
+		--)
+			shift
+			break;;
+	esac
+done
+
+if [ $use_comp -eq 1 ]; then
+	ext="xz"
+else
+	ext="gkb"
+fi
+
+silentstr=""
+if [ $quiet -eq 1 ]; then
+	silentstr="2>/dev/null"
+fi
+
+function dbg(){
+local cmd=$BASH_COMMAND
+if [ "$(echo $cmd | grep -q ckbcomp; echo $?)" == "0" ]; then
+	eval echo "[+] $cmd"
+fi
+}
+
+function compress(){
+	local compress_cmd='| xz -9 >' #pipe to xz and redirect to
+	if [ $use_comp -eq 1 ]; then
+		echo "$compress_cmd"
+	else
+		echo '-o' #normal file output
+	fi
+}
+
+function processdir(){
+if [ $debug -eq 1 ]; then
+	trap 'dbg' DEBUG
+fi
+dir="$1"
+vndr="$2"
+fvndr="$3"
+for keymap in $dir/*; do #for each keymap
+	mapfilename=$(basename $keymap)
+	if [ -z $vndr ]; then
+		relafilename=$mapfilename
+		prefix=$mapfilename
+	else
+		relafilename=$fvndr/$mapfilename
+		prefix=$vndr
+	fi
+
+	if [ -f $keymap ]; then #if it's a file
+		if [ $use_variants -eq 1 ]; then #and we have enabled variants
+			echo "set use_variants=1" >> menus/layouts/settings.cfg
+			$lblue; echo "---Keymap: $mapfilename BEGIN---"; $normal
+			if [ ! -d menus/layouts/$prefix ]; then
+				mkdir menus/layouts/$prefix #a directory for each keymap
+			fi
+			variants=( $(grep xkb_symbols "$dir/$mapfilename" | sed 's/xkb_symbols\ //g;s/default\ //g;s/"//g;s/^\ //g;s/[ \t]*$//;s/\ .*//g') ) #obtain available variants for keymap
+			IFS='"' #variant name contains spaces, so we need to set separator to something else (like ")
+			varnames=( $(grep "name" "$dir/$mapfilename" | grep -i "Group" | grep -o =.* | sed 's|[=";]||g;s/^\ //g;s/[ \t]*$//;s/$/"/' | tr -d '\n') ) #optain full variant names
+			if [ ! ${#variants[@]} == ${#varnames[@]} ]; then
+				unset IFS
+					$lred; echo "WARNING, Description Number Mismatch!! (${#variants[@]} variants, ${#varnames[@]} descriptions)"; $normal
+			fi
+			for (( i=0; i<${#variants[@]}; i++ )); do #for each variant
+				varname="${varnames[$i]}" #get variant name first
+				unset IFS #so we can get rid of the custom separator that causes troubles in other parts
+				variant="${variants[$i]}"
+				$lyellow; printf "Generating \t $mapfilename_$variant.gkb ...\n"; $normal
+				if [ "$variant" == "{" ]; then
+					eval "ckbcomp "$relafilename" "$silentstr" | grub-mklayout $(compress) menus/layouts/$prefix/$mapfilename.$ext" "$silentstr"
+				else
+					eval "ckbcomp "$relafilename" -variant "$variant" "$silentstr" | grub-mklayout $(compress) menus/layouts/$prefix/$variant.$ext" "$silentstr" #generate keymap variant
+				fi
+				if [ ! "$varname" == "" ]; then #if variant full name
+					echo "keymap_name='$varname'" >> menus/layouts/$prefix/$mapfilename_$variant.desc #save full name in .desc file
+				elif [ ! "$variant" == "" ]; then #if variant name
+					echo "keymap_name='$variant'" >> menus/layouts/$prefix/$mapfilename_$variant.desc #save short name
+				else #file name
+					echo "keymap_name='$mapfilename'" >> menus/layouts/$prefix/$mapfilename_$variant.desc #save filename
+				fi
+			done
+			unset IFS
+			$lblue; echo "---Keymap: $mapfilename END---"; $normal
+		else
+			echo "set use_variants=0" >> menus/layouts/settings.cfg
+			outname="$prefix$(if [ "$prefix" == "$vndr" ]; then echo _$mapfilename; fi)"
+			$lyellow; printf "Generating \t $outname.gkb ...\n"; $normal
+			eval "ckbcomp "$relafilename" "$silentstr" | grub-mklayout $(compress) menus/layouts/$outname.$ext" "$silentstr"
+			keymapname=$(grep "name" "$dir/$mapfilename" | grep -i "Group" | grep -o =.* | sed 's|[=";]||g;s/^\ //g;s/[ \t]*$//' | sed -n 1p)
+			if [ ! "$keymapname" == "" ]; then
+				echo "keymap_name='$keymapname'" >> menus/layouts/$outname.desc
+			fi
+		fi
+	elif [ -d $keymap ]; then #if it's a directory we have a customized keymap set
+		fvndr=$(basename $keymap) #remove directory path
+		vndr=${fvndr//_vndr} #remove "_vndr" from the directory name. "hp_vndr" --> "hp"
+		$lblue; echo "---Custom Vendor: $vndr BEGIN---"; $normal
+		if [ $use_variants -eq 1 ] && [ ! -d menus/layouts/$vndr ]; then
+			mkdir menus/layouts/$vndr #create a unique folder for vendor
+		fi
+		prevdir="$dir"
+		processdir "$keymap" "$vndr" "$fvndr"
+		$lblue; echo "---Custom Vendor: $vndr END---"; $normal
+		dir="$prevdir"
+		unset prevdir
+		unset vndr
+		unset fvndr
+	fi
+done
+}
+processdir "/usr/share/X11/xkb/symbols"
+if [ $use_tarxz -eq 1 ]; then
+	if [ -f menus/layouts.tar.xz ]; then
+		rm menus/layouts.tar.xz
+	fi
+	cd menus/layouts
+	tar cvJf ../layouts.tar.xz *
+fi
+$lgreen; echo "All Done!"; $normal
