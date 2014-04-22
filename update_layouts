@@ -15,6 +15,7 @@ quiet=0
 function usage(){
 echo "$(basename ${BASH_SOURCE[0]}), Super Grub2 Disk keymap generator by SMX"
 echo "${BASH_SOURCE[0]} <options>"
+printf " -d|--debug\t\tshows ckbcomp commands\n"
 printf " -q|--quiet\t\tquiet (suppress warnings)\n"
 printf " -v|--use-variants\tgenerate keymap variants\n"
 printf " -c|--use-comp\t\tuse XZ compression for gkb\n"
