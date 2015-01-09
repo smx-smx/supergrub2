@@ -13,6 +13,8 @@ GNU xorriso (it's a dependency of the grub-mkrescue utility which is part of GRU
 
 Unifont (which is also already a soft dependency of GRUB2).
 
+mtools (Till it's fixed in Debian. Check Debian bug number: 774910 ).
+
 Chroot
 ======
 
