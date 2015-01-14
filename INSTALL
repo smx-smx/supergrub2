@@ -5,7 +5,7 @@ Updated instructions will be found at: http://www.supergrubdisk.org/wiki/SuperGR
 Requirements
 ================
 
-Super GRUB2 Disk tends to depend heavily on the latest features of GRUB2, so using it with older versions of GRUB2 is very likely to fail. Currently Super GRUB2 Disk requires GRUB 2.0 (as opposed to GRUB 1.99, which is GRUB2, but is not GRUB 2.0). Newer versions of GRUB2 than 2.0 will probably work with this version of Super GRUB2 Disk's scripts, but I can't make any guarantees about the future. 
+Super GRUB2 Disk tends to depend heavily on the latest features of GRUB2, so using it with older versions of GRUB2 is very likely to fail. Currently Super GRUB2 Disk requires GRUB 2.02 (as opposed to GRUB 1.99, which is GRUB2, but is not GRUB 2.0). Newer versions of GRUB2 than 2.02 will probably work with this version of Super GRUB2 Disk's scripts, but I can't make any guarantees about the future. 
 
 Also needed:
 
@@ -18,21 +18,21 @@ mtools (Till it's fixed in Debian. Check Debian bug number: 774910 ).
 Chroot
 ======
 
-Although not strictly need you are encouraged to use a chroot for Super Grub2 Disk build. We will use a Debian Sid chroot.
+Although not strictly need you are encouraged to use a chroot for both Grub2 and Super Grub2 Disk build. We will use a Debian Jessie chroot.
 
-Please check: Super Grub2 Disk Sid Chroot in order to learn how to setup your Super Grub2 Disk sid chroot. 
+Please check: Super Grub2 Disk Jessie Chroot in order to learn how to setup your Super Grub2 Disk Jessie chroot. 
 
-Super Grub2 Disk Sid Chroot
+Super Grub2 Disk Jessie Chroot
 ===========================
 Introduction
 
-First of all you need to know that this is simply a Debian Sid Chroot. It's a amd64 chroot.
+First of all you need to know that this is simply a Debian Jessie Chroot. It's a amd64 chroot.
 
-The base OS that we are using is another Debian Sid. If you are not using a Debian based OS like Ubuntu you might need to use cdebootstrap instead of debootstrap.
+The base OS that we are using is another Debian Jessie. If you are not using a Debian based OS like Ubuntu you might need to use cdebootstrap instead of debootstrap.
 
 Chroot in this example is going to be installed in:
 
-/mnt/ssd/sgd_chroot_sid_amd64
+/mnt/ssd/sgd_chroot_jessie_amd64
 
 Please adapt to your needs.
 First setup
@@ -40,31 +40,31 @@ First setup
 So we cd to the parent directory of the directoy where our chroot will be created. And we invoke debootstrap
 
 cd /mnt/ssd/
-mkdir sgd_chroot_sid_amd64
-debootstrap --arch amd64 sid sgd_chroot_sid_amd64 http://http.debian.net/debian/
+mkdir sgd_chroot_jessie_amd64
+debootstrap --arch amd64 jessie sgd_chroot_jessie_amd64 http://http.debian.net/debian/
 
 Then we need to prepare our fstab to take care of mounting some auxiliar folders for the chroot so that it works ok. You can opt to mount them manually if you are not fancing of fstab doing it automatically. Please type all the command as root user
 
 cat << EOF | sudo tee -a /etc/fstab
-proc /mnt/ssd/sgd_chroot_sid_amd64/proc proc defaults 0 0
-sysfs /mnt/ssd/sgd_chroot_sid_amd64/sys sysfs defaults 0 0
+proc /mnt/ssd/sgd_chroot_jessie_amd64/proc proc defaults 0 0
+sysfs /mnt/ssd/sgd_chroot_jessie_amd64/sys sysfs defaults 0 0
 EOF
 
 I personally also add the home directory because I found it easier to work with from my main system. Be aware that you can delete all your files if you don't umount it before deleting the whole chroot.
 
 cat << EOF | sudo tee -a /etc/fstab
-/home /mnt/ssd/sgd_chroot_sid_amd64/home ext4 bind 0 0
+/home /mnt/ssd/sgd_chroot_jessie_amd64/home ext4 bind 0 0
 EOF
 
 Then you need to mount all these mounts with:
 
 mount -a
 
-Custom your Sid Chroot
+Custom your Jessie Chroot
 
 In order to enter into the Chroot you need to do:
 
-chroot /mnt/ssd/sgd_chroot_sid_amd64/ /bin/bash
+chroot /mnt/ssd/sgd_chroot_jessie_amd64/ /bin/bash
 
 Once inside the chroot:
 
@@ -108,12 +108,46 @@ If I am inside the chroot and I want to work as my new normal user I can run:
 su myuser
 
 
-Super Grub2 Disk Sid Chroot Build
-=================================
+Grub2 build (for pc and efi) and install inside Jessie Chroot
+==============================================================
 
-As explained in Super Grub2 Disk Sid Chroot you need to enter in the chroot thanks to:
+As explained in Super Grub2 Disk Jessie Chroot you need to enter in the chroot thanks to:
 
-chroot /mnt/ssd/sgd_chroot_sid_amd64/ /bin/bash
+chroot /mnt/ssd/sgd_chroot_jessie_amd64/ /bin/bash
+
+#Make sure no Debian grub package is found in chroot
+
+apt-get remove '.grub.'
+# Grub2 (efi+pc)) Build and installation
+
+# Make sure we are testing the right revision
+mkdir grub_upstream
+cd grub_upstream
+git clone git://git.savannah.gnu.org/grub.git .
+git checkout bac5d1a64ab4191058a8fd4c05f6b3b339e249e7
+# Remove any non git related file - BEGIN
+git reset --hard
+git clean -f -d
+git clean -f -x -d
+
+# Remove any non git related file - END
+# Build efi based grub and install it - BEGIN
+./autogen.sh && ./configure --enable-grub-mkfont --with-platform=efi && make
+# Dont forget to delete any rest of previous installation - BEGIN
+sudo rm -rf /usr/local/etc/grub.d/ /usr/local/bin/grub-* /usr/local/share/grub/
+# Dont forget to delete any rest of previous installation - END
+sudo make install
+# Build efi based grub and install it - END
+make clean # Prepare for next build
+./configure --enable-grub-mkfont --with-platform=pc && make # Prepare for a i386 build
+sudo make install # Install i386 build
+
+Super Grub2 Disk Jessie Chroot Build
+====================================
+
+As explained in Super Grub2 Disk Jessie Chroot you need to enter in the chroot thanks to:
+
+chroot /mnt/ssd/sgd_chroot_jessie_amd64/ /bin/bash
 
 .
 
@@ -141,7 +175,7 @@ git clone https://forja.cenatic.es/anonscm/git/supergrub2/supergrub2.git
 So that we can build it:
 
 cd supergrub2
-./supergrub-meta-mkrescue
+./supergrub-mkrescue
 
 If everything went well and you did not miss any of the former steps you will get, among others, these files:
 
