@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Super GRUB2 Disk 2.0s1~beta1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-23 01:20+0100\n"
+"POT-Creation-Date: 2015-01-14 02:43+0000\n"
 "PO-Revision-Date: 2012-07-06 21:14+01\n"
 "Last-Translator: Davide Depau <david.dep.1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,32 +17,33 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: menus/main.cfg:161 menus/main.cfg:238 menus/processenable.cfg:12
+#: menus/main.cfg:157 menus/main.cfg:224 menus/processenable.cfg:12
 msgid "Press escape to return to the main menu"
 msgstr "Premi Esc per tornare al menu principale"
 
-#: menus/main.cfg:168 menus/main.cfg:173
-msgid "Everything"
+#: menus/main.cfg:164
+msgid "Detect and show boot methods"
 msgstr ""
 
-#: menus/main.cfg:177
+#: menus/main.cfg:172
 msgid "Boot manually"
 msgstr ""
 
-#: menus/main.cfg:197
+#: menus/main.cfg:192
 #, fuzzy
 msgid "Extra GRUB2 functionality"
 msgstr "Funzioni speciali di GRUB2..."
 
-#: menus/main.cfg:227
-msgid "List devices/partitions"
+#: menus/main.cfg:213
+#, fuzzy
+msgid "Print devices/partitions"
 msgstr "Elenca dischi/partizioni"
 
-#: menus/main.cfg:242
+#: menus/main.cfg:228
 msgid "Color ON/OFF"
 msgstr "Accendi/Spegni colore"
 
-#: menus/main.cfg:252
+#: menus/main.cfg:238
 msgid "Exit"
 msgstr ""
 
@@ -102,18 +103,6 @@ msgstr "Abilita supporto a RAID di GRUB2"
 msgid "Enable serial terminal"
 msgstr "Abilita il terminale seriale"
 
-#: menus/processenable.cfg:4
-msgid "Begin processing"
-msgstr ""
-
-#: menus/processenable.cfg:6
-msgid "End processing"
-msgstr ""
-
-#: menus/processenable.cfg:12
-msgid "(or wait 5 seconds)"
-msgstr ""
-
 #: menus/grubdetect.cfg:24
 #, fuzzy
 msgid "(GRUB2 installation (even if mbr is overwritten))"
@@ -136,18 +125,30 @@ msgstr ""
 msgid "Operating Systems"
 msgstr "Cerca sistemi operativi"
 
-#: menus/osdetect.cfg:339
+#: menus/osdetect.cfg:375
 msgid "Sorry, but we are booted via BIOS and can not load this OS."
 msgstr ""
 
-#: menus/osdetect.cfg:340
+#: menus/osdetect.cfg:376
 msgid "Please try booting SG2D via UEFI."
 msgstr ""
 
-#: menus/osdetect.cfg:341
+#: menus/osdetect.cfg:377
 #, fuzzy
 msgid "Press escape to return to the menu"
 msgstr "Premi Esc per tornare al menu principale"
+
+#: menus/processenable.cfg:4
+msgid "Begin processing"
+msgstr ""
+
+#: menus/processenable.cfg:6
+msgid "End processing"
+msgstr ""
+
+#: menus/processenable.cfg:12
+msgid "(or wait 5 seconds)"
+msgstr ""
 
 #: menus/reboot.cfg:19
 msgid "Reboot"
