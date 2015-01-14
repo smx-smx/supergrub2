@@ -7,7 +7,6 @@ menus/enableencrypted.cfg
 menus/enablelvm.cfg
 menus/enableraid.cfg
 menus/enableserial.cfg
-menus/everythingplus.cfg
 menus/grubdetect.cfg
 menus/halt.cfg
 menus/language_select.cfg

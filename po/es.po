@@ -96,19 +96,15 @@ msgstr "Activa soporte RAID de GRUB2"
 msgid "Enable serial terminal"
 msgstr "Activa terminal serie"
 
-#: menus/everythingplus.cfg:6 menus/processenable.cfg:4
+#: menus/processenable.cfg:4
 msgid "Begin processing"
 msgstr "Inicio del proceso"
 
-#: menus/everythingplus.cfg:8 menus/processenable.cfg:6
+#: menus/processenable.cfg:6
 msgid "End processing"
 msgstr "Fin del proceso"
 
-#: menus/everythingplus.cfg:14
-msgid "Press escape to continue"
-msgstr "Pulsa ESC para continuar"
-
-#: menus/everythingplus.cfg:14 menus/processenable.cfg:12
+#: menus/processenable.cfg:12
 msgid "(or wait 5 seconds)"
 msgstr "(o espera 5 segundos)"
 
