@@ -34,11 +34,6 @@ msgstr ""
 msgid "Extra GRUB2 functionality"
 msgstr "Funzioni speciali di GRUB2..."
 
-#: menus/main.cfg:216
-#, fuzzy
-msgid "Extra Search functionality"
-msgstr "Funzioni speciali di GRUB2..."
-
 #: menus/main.cfg:227
 msgid "List devices/partitions"
 msgstr "Elenca dischi/partizioni"

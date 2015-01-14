@@ -32,10 +32,6 @@ msgstr "Arranque manual"
 msgid "Extra GRUB2 functionality"
 msgstr "Funcionalidad extra de GRUB2"
 
-#: menus/main.cfg:216
-msgid "Extra Search functionality"
-msgstr "Funcionalidad extra de busqueda"
-
 #: menus/main.cfg:227
 msgid "List devices/partitions"
 msgstr "Mostrar dispositivos/particiones"

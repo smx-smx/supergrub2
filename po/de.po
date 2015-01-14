@@ -33,10 +33,6 @@ msgstr ""
 msgid "Extra GRUB2 functionality"
 msgstr ""
 
-#: menus/main.cfg:216
-msgid "Extra Search functionality"
-msgstr ""
-
 #: menus/main.cfg:227
 msgid "List devices/partitions"
 msgstr "Geraete/Partitionen auflisten"
