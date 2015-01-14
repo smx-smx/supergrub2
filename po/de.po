@@ -97,17 +97,6 @@ msgstr ""
 msgid "Enable GRUB2's LVM support"
 msgstr "LVM Unterstuetzung von GRUB2 aktivieren"
 
-#: menus/enablepata.cfg:18
-#, fuzzy
-msgid "Enable GRUB2's PATA support"
-msgstr "RAID Unterstuetzung von GRUB2 aktivieren"
-
-#: menus/enablepata.cfg:18
-#, fuzzy
-msgid "(to work around BIOS bugs/limitations)"
-msgstr ""
-"PATA Unterstuetzung von GRUB2 aktivieren (bei BIOS Bugs/Beschraenkungen)"
-
 #: menus/enableraid.cfg:18
 msgid "Enable GRUB2's RAID support"
 msgstr "RAID Unterstuetzung von GRUB2 aktivieren"
@@ -115,15 +104,6 @@ msgstr "RAID Unterstuetzung von GRUB2 aktivieren"
 #: menus/enableserial.cfg:18
 msgid "Enable serial terminal"
 msgstr "Serielles Terminal aktivieren"
-
-#: menus/enableusb.cfg:18
-#, fuzzy
-msgid "Enable GRUB2's USB support"
-msgstr "LVM Unterstuetzung von GRUB2 aktivieren"
-
-#: menus/enableusb.cfg:18
-msgid "experimental"
-msgstr ""
 
 #: menus/everythingplus.cfg:6 menus/processenable.cfg:4
 msgid "Begin processing"
@@ -203,5 +183,3 @@ msgstr ""
 #~ msgid "Change language"
 #~ msgstr "Sprache aendern"
 
-#~ msgid "Enable GRUB2's USB support *experimental*"
-#~ msgstr "USB Unterstuetzung von GRUB2 aktivieren *experimentell*"

@@ -5,10 +5,8 @@ menus/autoiso.cfg
 menus/cfgextract.cfg
 menus/enableencrypted.cfg
 menus/enablelvm.cfg
-menus/enablepata.cfg
 menus/enableraid.cfg
 menus/enableserial.cfg
-menus/enableusb.cfg
 menus/everythingplus.cfg
 menus/grubdetect.cfg
 menus/halt.cfg

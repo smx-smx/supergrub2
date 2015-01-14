@@ -93,28 +93,12 @@ msgstr ""
 msgid "Enable GRUB2's LVM support"
 msgstr ""
 
-#: menus/enablepata.cfg:18
-msgid "Enable GRUB2's PATA support"
-msgstr ""
-
-#: menus/enablepata.cfg:18
-msgid "(to work around BIOS bugs/limitations)"
-msgstr ""
-
 #: menus/enableraid.cfg:18
 msgid "Enable GRUB2's RAID support"
 msgstr ""
 
 #: menus/enableserial.cfg:18
 msgid "Enable serial terminal"
-msgstr ""
-
-#: menus/enableusb.cfg:18
-msgid "Enable GRUB2's USB support"
-msgstr ""
-
-#: menus/enableusb.cfg:18
-msgid "experimental"
 msgstr ""
 
 #: menus/everythingplus.cfg:6 menus/processenable.cfg:4

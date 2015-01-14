@@ -96,18 +96,6 @@ msgstr ""
 msgid "Enable GRUB2's LVM support"
 msgstr "Aktifkan sokongan LVM GRUB2"
 
-#: menus/enablepata.cfg:18
-#, fuzzy
-msgid "Enable GRUB2's PATA support"
-msgstr "Aktifkan sokongan RAID GRUB2"
-
-#: menus/enablepata.cfg:18
-#, fuzzy
-msgid "(to work around BIOS bugs/limitations)"
-msgstr ""
-"Aktifkan sokongan PATA GRUB2 (untuk bekerja di sekitar pepijat 'bug' / had "
-"BIOS)"
-
 #: menus/enableraid.cfg:18
 msgid "Enable GRUB2's RAID support"
 msgstr "Aktifkan sokongan RAID GRUB2"
@@ -115,15 +103,6 @@ msgstr "Aktifkan sokongan RAID GRUB2"
 #: menus/enableserial.cfg:18
 msgid "Enable serial terminal"
 msgstr "Aktifkan terminal siri"
-
-#: menus/enableusb.cfg:18
-#, fuzzy
-msgid "Enable GRUB2's USB support"
-msgstr "Aktifkan sokongan LVM GRUB2"
-
-#: menus/enableusb.cfg:18
-msgid "experimental"
-msgstr ""
 
 #: menus/everythingplus.cfg:6 menus/processenable.cfg:4
 msgid "Begin processing"
@@ -198,6 +177,3 @@ msgstr ""
 #: menus/searchfloppy.cfg:18 menus/searchfloppy.cfg:28
 msgid "Search in floppy"
 msgstr ""
-
-#~ msgid "Enable GRUB2's USB support *experimental*"
-#~ msgstr "Membolehkan sokongan USB GRUB2 *experimental*"

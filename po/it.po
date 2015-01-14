@@ -99,17 +99,6 @@ msgstr ""
 msgid "Enable GRUB2's LVM support"
 msgstr "Abilita supporto a LVM di GRUB2"
 
-#: menus/enablepata.cfg:18
-#, fuzzy
-msgid "Enable GRUB2's PATA support"
-msgstr "Abilita supporto a RAID di GRUB2"
-
-#: menus/enablepata.cfg:18
-#, fuzzy
-msgid "(to work around BIOS bugs/limitations)"
-msgstr ""
-"Abilita supporto a PATA di GRUB2 (per evitare bug/limitazioni del BIOS)"
-
 #: menus/enableraid.cfg:18
 msgid "Enable GRUB2's RAID support"
 msgstr "Abilita supporto a RAID di GRUB2"
@@ -117,15 +106,6 @@ msgstr "Abilita supporto a RAID di GRUB2"
 #: menus/enableserial.cfg:18
 msgid "Enable serial terminal"
 msgstr "Abilita il terminale seriale"
-
-#: menus/enableusb.cfg:18
-#, fuzzy
-msgid "Enable GRUB2's USB support"
-msgstr "Abilita supporto a LVM di GRUB2"
-
-#: menus/enableusb.cfg:18
-msgid "experimental"
-msgstr ""
 
 #: menus/everythingplus.cfg:6 menus/processenable.cfg:4
 msgid "Begin processing"
@@ -206,9 +186,6 @@ msgstr ""
 
 #~ msgid "Change language"
 #~ msgstr "Scegli lingua..."
-
-#~ msgid "Enable GRUB2's USB support *experimental*"
-#~ msgstr "Abilita supporto alle USB di GRUB2 (sperimentale)"
 
 #~ msgid "Error: Could not find any grub.cfg files."
 #~ msgstr "Errore: Non è stato trovato alcun file grub.cfg."

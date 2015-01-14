@@ -92,14 +92,6 @@ msgstr "(LUKS y geli)"
 msgid "Enable GRUB2's LVM support"
 msgstr "Activa soporte LVM de GRUB2"
 
-#: menus/enablepata.cfg:18
-msgid "Enable GRUB2's PATA support"
-msgstr "Activa soporte PATA de GRUB2"
-
-#: menus/enablepata.cfg:18
-msgid "(to work around BIOS bugs/limitations)"
-msgstr "(para solventar limitaciones de BIOS)"
-
 #: menus/enableraid.cfg:18
 msgid "Enable GRUB2's RAID support"
 msgstr "Activa soporte RAID de GRUB2"
@@ -107,14 +99,6 @@ msgstr "Activa soporte RAID de GRUB2"
 #: menus/enableserial.cfg:18
 msgid "Enable serial terminal"
 msgstr "Activa terminal serie"
-
-#: menus/enableusb.cfg:18
-msgid "Enable GRUB2's USB support"
-msgstr "Activa soporte USB de GRUB2"
-
-#: menus/enableusb.cfg:18
-msgid "experimental"
-msgstr "experimental"
 
 #: menus/everythingplus.cfg:6 menus/processenable.cfg:4
 msgid "Begin processing"
