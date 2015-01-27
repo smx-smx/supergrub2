@@ -124,7 +124,7 @@ apt-get remove '.grub.'
 mkdir grub_upstream
 cd grub_upstream
 git clone git://git.savannah.gnu.org/grub.git .
-git checkout bac5d1a64ab4191058a8fd4c05f6b3b339e249e7
+git checkout dd430afbf874f6212742c079d72b4b9e959e0542
 # Remove any non git related file - BEGIN
 git reset --hard
 git clean -f -d
