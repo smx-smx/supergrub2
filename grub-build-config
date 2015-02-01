@@ -1,0 +1,29 @@
+# Caller script needs to define: SG2D_DIR variable
+
+if [ -z "${SG2D_DIR}" ] ; then
+  echo -e -n "SG2D_DIR variable was not defined\n"
+  echo -e -n "You are supposed to include grub-build-config\n"
+  echo -e -n "from a SG2D Grub build script\n"
+  exit 1
+fi
+
+GIT_REPO="git://git.savannah.gnu.org/grub.git"
+GRUB2_COMMIT="master"
+
+SG2D_GRUB_BUILD_PREFIX="${SG2D_DIR}/sg2d_grub_builds"
+SG2D_GRUB_BUILD_HYBRID_I386_PC="hybrid_i386_pc"
+SG2D_GRUB_BUILD_HYBRID_X86_64_EFI="hybrid_x86_64_efi"
+SG2D_GRUB_BUILD_I386_PC="i386_pc"
+SG2D_GRUB_BUILD_X86_64_EFI="x86_64_efi"
+
+SG2D_GRUB_INSTALLATION_PREFIX="${SG2D_DIR}/sg2d_grub_installations"
+SG2D_GRUB_INSTALLATION_HYBRID="hybrid"
+SG2D_GRUB_INSTALLATION_I386_PC="i386_pc"
+SG2D_GRUB_INSTALLATION_X86_64_EFI="x86_64_efi"
+
+SG2D_GRUB_BUILD_DIRS_ARR[0]="${SG2D_GRUB_BUILD_PREFIX}/${SG2D_GRUB_BUILD_HYBRID_I386_PC}"
+SG2D_GRUB_BUILD_DIRS_ARR[1]="${SG2D_GRUB_BUILD_PREFIX}/${SG2D_GRUB_BUILD_HYBRID_X86_64_EFI}"
+SG2D_GRUB_BUILD_DIRS_ARR[2]="${SG2D_GRUB_BUILD_PREFIX}/${SG2D_GRUB_BUILD_I386_PC}"
+SG2D_GRUB_BUILD_DIRS_ARR[3]="${SG2D_GRUB_BUILD_PREFIX}/${SG2D_GRUB_BUILD_X86_64_EFI}"
+
+

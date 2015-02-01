@@ -12,3 +12,6 @@
 *\.EFI\.sha256
 menus/language.cfg
 .directory
+sg2d_grub_builds
+sg2d_grub_installations
+tmp_grub2_clone_dir
