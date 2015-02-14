@@ -2,8 +2,6 @@
 
 SUPER_GRUB2_DISK_FILE_PREFIX="super_grub2_disk"
 
-export DEBIAN_FRONTEND=noninteractive
-
 SGD2_SOURCE_DIR="$(pwd)"
 
 function build_sg2d () {
@@ -22,20 +20,8 @@ ${STANDALONE_FORMAT_STR}_${sgrub_version}.${STANDALONE_EXTENSION}"
 
 }
 
-function clean_every_build () {
-
-  sudo apt-get -y remove grub-.*-bin
-
-}
-
 
 function grub2_sg2d_hybrid_build () {
-
-  # Grub2 - Hybrid build
-  clean_every_build
-  sudo apt-get -y install \
-  grub-pc-bin \
-  grub-efi-amd64-bin
 
   # Super Grub2 Disk - Hybrid build
   TARGET_PLATFORM="hybrid"
@@ -45,11 +31,6 @@ function grub2_sg2d_hybrid_build () {
 
 function grub2_sg2d_i386_pc_build () {
 
-  # Grub2 - i386 - pc build
-  clean_every_build
-  sudo apt-get -y install \
-  grub-pc-bin
-
   # Super Grub2 Disk - i386 - pc build
   TARGET_PLATFORM="i386_pc"
   build_sg2d
@@ -57,11 +38,6 @@ function grub2_sg2d_i386_pc_build () {
 }
 
 function grub2_sg2d_x86_64_efi_build () {
-
-  # Grub2 - x86_64 - efi build
-  clean_every_build
-  sudo apt-get -y install \
-  grub-efi-amd64-bin
 
   # Super Grub2 Disk - x86_64 - efi build
   TARGET_PLATFORM="x86_64_efi"
@@ -76,11 +52,6 @@ function grub2_sg2d_x86_64_efi_build () {
 
 function grub2_sg2d_i386_efi_build () {
 
-  # Grub2 - i386 - efi build
-  clean_every_build
-  sudo apt-get -y install \
-  grub-efi-ia32-bin
-
   # Super Grub2 Disk - i386 - efi build
   TARGET_PLATFORM="i386_efi"
   build_sg2d
@@ -94,11 +65,6 @@ function grub2_sg2d_i386_efi_build () {
 
 function grub2_sg2d_coreboot_build () {
 
-  # Grub2 - coreboot build
-  clean_every_build
-  sudo apt-get -y install \
-  grub-coreboot-bin
-
   # Super Grub2 Disk - coreboot build
   TARGET_PLATFORM="coreboot"
   build_sg2d
@@ -111,11 +77,6 @@ function grub2_sg2d_coreboot_build () {
 }
 
 function grub2_sg2d_ieee1275_build () {
-
-  # Grub2 - ieee1275 build
-  clean_every_build
-  sudo apt-get -y install \
-  grub-ieee1275-bin
 
   # Super Grub2 Disk - ieee1275 build
   TARGET_PLATFORM="ieee1275"
