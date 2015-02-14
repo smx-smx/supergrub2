@@ -22,8 +22,8 @@ Although not strictly need you are encouraged to use a chroot for both Grub2 and
 
 Please check: Super Grub2 Disk Jessie Chroot in order to learn how to setup your Super Grub2 Disk Jessie chroot. 
 
-Super Grub2 Disk Jessie Chroot
-===========================
+Super Grub2 Disk Jessie Chroot (Optional)
+==========================================
 Introduction
 
 First of all you need to know that this is simply a Debian Jessie Chroot. It's a amd64 chroot.
@@ -108,40 +108,6 @@ If I am inside the chroot and I want to work as my new normal user I can run:
 su myuser
 
 
-Grub2 build (for pc and efi) and install inside Jessie Chroot
-==============================================================
-
-As explained in Super Grub2 Disk Jessie Chroot you need to enter in the chroot thanks to:
-
-chroot /mnt/ssd/sgd_chroot_jessie_amd64/ /bin/bash
-
-#Make sure no Debian grub package is found in chroot
-
-apt-get remove '.grub.'
-# Grub2 (efi+pc)) Build and installation
-
-# Make sure we are testing the right revision
-mkdir grub_upstream
-cd grub_upstream
-git clone git://git.savannah.gnu.org/grub.git .
-git checkout dd430afbf874f6212742c079d72b4b9e959e0542
-# Remove any non git related file - BEGIN
-git reset --hard
-git clean -f -d
-git clean -f -x -d
-
-# Remove any non git related file - END
-# Build efi based grub and install it - BEGIN
-./autogen.sh && ./configure --enable-grub-mkfont --with-platform=efi && make
-# Dont forget to delete any rest of previous installation - BEGIN
-sudo rm -rf /usr/local/etc/grub.d/ /usr/local/bin/grub-* /usr/local/share/grub/
-# Dont forget to delete any rest of previous installation - END
-sudo make install
-# Build efi based grub and install it - END
-make clean # Prepare for next build
-./configure --enable-grub-mkfont --with-platform=pc && make # Prepare for a i386 build
-sudo make install # Install i386 build
-
 Super Grub2 Disk Jessie Chroot Build
 ====================================
 
@@ -149,7 +115,7 @@ As explained in Super Grub2 Disk Jessie Chroot you need to enter in the chroot t
 
 chroot /mnt/ssd/sgd_chroot_jessie_amd64/ /bin/bash
 
-.
+Alternatively you might decide not to do it.
 
 We probably need to install git package
 
@@ -172,9 +138,20 @@ Now we are going to get Super Grub2 Disk source code.
 
 git clone https://forja.cenatic.es/anonscm/git/supergrub2/supergrub2.git
 
-So that we can build it:
+Although a final user can use their own grub thanks to supergrub-build-config file we recommend you to build grub yourself thanks to super grub disk build script.
 
+First of all we make sure we are in super grub disk directory.
 cd supergrub2
+
+Then we will fetch, build grub and install grub in a custom directory (this will not affect your system or chroot grub installation).
+
+./grub-build-001-prepare-build
+./grub-build-002-clean-and-update
+./grub-build-003-build-all
+./grub-build-004-install-all
+
+* Finally we can just build the hybrid version for SG2D:
+
 ./supergrub-mkrescue
 
 If everything went well and you did not miss any of the former steps you will get, among others, these files:
@@ -185,4 +162,8 @@ super_grub2_disk_hybrid_2.00s1-beta6.iso.sha1
 super_grub2_disk_hybrid_2.00s1-beta6.iso.sha256
 
 which their filename might vary depending on the current Super Grub2 Disk version. 
+
+* Or we can build all the SG2D releases thanks to:
+
+./supergrub-meta-mkrescue
 
