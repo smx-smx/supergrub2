@@ -55,7 +55,12 @@ source supergrub-mkcommon
 
 
 if [ ! -x "$GRUB_MKSTANDALONE_BINARY" ] ; then
-  echo -e -n "grub-mkstandalone binary cannot be run.\nAborting.\n" 1>&2
+  cat << EOF 1>&2
+  grub-mkstandalone binary cannot be run.
+  Either you need to install it
+  either you need to build it from grub build scripts
+  Aborting.
+EOF
   exit 1
 fi
 
