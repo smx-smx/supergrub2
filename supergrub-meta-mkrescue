@@ -99,8 +99,8 @@ grub2_sg2d_x86_64_efi_build
 
 grub2_sg2d_i386_pc_build
 
-grub2_sg2d_i386_efi_build
+#grub2_sg2d_i386_efi_build
 
-grub2_sg2d_coreboot_build
+#grub2_sg2d_coreboot_build
 
-grub2_sg2d_ieee1275_build
+#grub2_sg2d_ieee1275_build
