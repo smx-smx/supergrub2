@@ -20,6 +20,7 @@ EOF
 
 }
 
+SG2D_DIR="$(pwd)"
 source grub-build-config
 
 GRUB_MKSTANDALONE_BINARY="\
