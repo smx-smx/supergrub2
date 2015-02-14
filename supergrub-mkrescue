@@ -12,11 +12,20 @@ cat <<EOF
   Usage: $0 [-o=FILENAME]
   Example: $0 -o=myrescatux.iso
 
+  Usage: $0 [-o=FILENAME] [--grub-mkrescue-binary=/path/to/grub-mkrescue]
+  Example: $0 -o=myrescatux.iso --grub-mkrescue-binary=/usr/local/bin/grub-mkrescue
+
 EOF
 
 }
 
 source grub-build-config
+
+GRUB_MKRESCUE_BINARY="\
+${SG2D_GRUB_INSTALLATION_PREFIX}\
+/${SG2D_GRUB_INSTALLATION_HYBRID}\
+/bin/grub-mkrescue\
+"
 
 # Check the arguments.
 for option in "$@"; do
@@ -28,6 +37,9 @@ for option in "$@"; do
     -o=*)
       CUSTOM_ISO_FILENAME=`echo "$option" | sed 's/-o=//'`
     ;;
+    --grub-mkrescue-binary=*)
+      GRUB_MKRESCUE_BINARY=`echo "$option" | sed 's/--grub-mkrescue-binary=//'`
+    ;;
   esac
 done
 
@@ -36,6 +48,11 @@ source menus/version.cfg
 # Get common library for supergrub-mk commands
 source supergrub-mkcommon
 
+
+if [ ! -x "$GRUB_MKRESCUE_BINARY" ] ; then
+  echo -e -n "grub-mkrescue binary cannot be run.\nAborting.\n" 1>&2
+  exit 1
+fi
 
 BOOT_ISOS_DIRECTORY="boot-isos"
 overlay=$(mktemp -d)
@@ -47,11 +64,7 @@ fi
 
 default_options="--output=${ISO_FILENAME} $overlay"
 
-GRUB_MKRESCUE_BINARY="\
-${SG2D_GRUB_INSTALLATION_PREFIX}\
-/${SG2D_GRUB_INSTALLATION_HYBRID}\
-/bin/grub-mkrescue\
-"
+
 
 init_overlay_dir
 copy_boot_isos_directory
