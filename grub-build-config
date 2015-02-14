@@ -8,7 +8,7 @@ if [ -z "${SG2D_DIR}" ] ; then
 fi
 
 GIT_REPO="git://git.savannah.gnu.org/grub.git"
-GRUB2_COMMIT="master"
+GRUB2_COMMIT="8e5bc2f4d3767485e729ed96ea943570d1cb1e45"
 
 SG2D_GRUB_BUILD_PREFIX="${SG2D_DIR}/sg2d_grub_builds"
 SG2D_GRUB_BUILD_HYBRID_I386_PC="hybrid_i386_pc"
