@@ -3,12 +3,15 @@
 SUPER_GRUB2_DISK_FILE_PREFIX="super_grub2_disk"
 
 SGD2_SOURCE_DIR="$(pwd)"
+SG2D_DIR="${SGD2_SOURCE_DIR}"
 
 function build_sg2d () {
 
   ./supergrub-mkrescue \
       -o="${SUPER_GRUB2_DISK_FILE_PREFIX}\
-_${TARGET_PLATFORM}_${sgrub_version}.iso"
+_${TARGET_PLATFORM}_${sgrub_version}.iso" \
+      --grub-mkrescue-binary=\
+"${GRUB_MKRESCUE_BINARY}"
 
 }
 
@@ -18,7 +21,10 @@ function build_sg2d_standalone () {
     -O=${STANDALONE_FORMAT} \
     -o="${SUPER_GRUB2_DISK_FILE_PREFIX}\
 _standalone_\
-${STANDALONE_FORMAT_STR}_${sgrub_version}.${STANDALONE_EXTENSION}"
+${STANDALONE_FORMAT_STR}\
+_${sgrub_version}.${STANDALONE_EXTENSION}" \
+    --grub-mkstandalone-binary=\
+"${GRUB_MKSTANDALONE_BINARY}"
 
 }
 
@@ -27,6 +33,11 @@ function grub2_sg2d_hybrid_build () {
 
   # Super Grub2 Disk - Hybrid build
   TARGET_PLATFORM="hybrid"
+  GRUB_MKRESCUE_BINARY="\
+${SG2D_GRUB_INSTALLATION_PREFIX}\
+/${SG2D_GRUB_INSTALLATION_HYBRID}\
+/bin/grub-mkrescue\
+"
   build_sg2d
 
 }
@@ -35,6 +46,11 @@ function grub2_sg2d_i386_pc_build () {
 
   # Super Grub2 Disk - i386 - pc build
   TARGET_PLATFORM="i386_pc"
+  GRUB_MKRESCUE_BINARY="\
+${SG2D_GRUB_INSTALLATION_PREFIX}\
+/${SG2D_GRUB_INSTALLATION_I386_PC}\
+/bin/grub-mkrescue\
+"
   build_sg2d
 
 }
@@ -43,11 +59,21 @@ function grub2_sg2d_x86_64_efi_build () {
 
   # Super Grub2 Disk - x86_64 - efi build
   TARGET_PLATFORM="x86_64_efi"
+  GRUB_MKRESCUE_BINARY="\
+${SG2D_GRUB_INSTALLATION_PREFIX}\
+/${SG2D_GRUB_INSTALLATION_X86_64_EFI}\
+/bin/grub-mkrescue\
+"
   build_sg2d
 
   STANDALONE_FORMAT_STR="x86_64_efi"
   STANDALONE_FORMAT="x86_64-efi"
   STANDALONE_EXTENSION="EFI"
+  GRUB_MKSTANDALONE_BINARY="\
+${SG2D_GRUB_INSTALLATION_PREFIX}\
+/${SG2D_GRUB_INSTALLATION_X86_64_EFI}\
+/bin/grub-mkstandalone\
+"
   build_sg2d_standalone
 
 }
@@ -94,6 +120,8 @@ function grub2_sg2d_ieee1275_build () {
 
 # Needed for getting SG2D version
 source menus/version.cfg
+
+source grub-build-config
 
 grub2_sg2d_hybrid_build
 
