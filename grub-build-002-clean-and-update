@@ -25,7 +25,7 @@ for n_build_dir in "${!SG2D_GRUB_BUILD_DIRS_ARR[@]}"; do
 	if [ ! -d "${SG2D_GRUB_BUILD_DIRS_ARR[n_build_dir]}" ] ; then
 		echo -e -n "Clean and build refuses to continue\n";
 		echo -e -n "'${SG2D_GRUB_BUILD_DIRS_ARR[n_build_dir]}' does not exist\n";
-		echo -e -n "Have you run: ./grub-build-001-prepare-build.sh ?\n";
+		echo -e -n "Have you run: ./grub-build-001-prepare-build ?\n";
 		exit 2
 	fi
 

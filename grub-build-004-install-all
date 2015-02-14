@@ -15,9 +15,9 @@ for n_build_dir in "${!SG2D_GRUB_BUILD_DIRS_ARR[@]}"; do
 	if [ ! -x "${SG2D_GRUB_BUILD_DIRS_ARR[n_build_dir]}/configure" ] ; then
 		echo -e -n "Install all grub releases refuses to continue\n" 1>&2 ;
 		echo -e -n "'${SG2D_GRUB_BUILD_DIRS_ARR[n_build_dir]}/configure' does not exist\n" 1>&2 ;
-		echo -e -n "Have you run: ./grub-build-001-prepare-build.sh ?\n" 1>&2 ;
-		echo -e -n "and: ./grub-build-002-clean-and-update.sh ?\n" 1>&2 ;
-		echo -e -n "and: ./grub-build-003-build-all.sh ?\n" 1>&2 ;
+		echo -e -n "Have you run: ./grub-build-001-prepare-build ?\n" 1>&2 ;
+		echo -e -n "and: ./grub-build-002-clean-and-update ?\n" 1>&2 ;
+		echo -e -n "and: ./grub-build-003-build-all ?\n" 1>&2 ;
 		exit 2
 	fi
 
