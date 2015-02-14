@@ -15,6 +15,9 @@ cat <<EOF
 EOF
 
 }
+
+source grub-build-config
+
 # Check the arguments.
 for option in "$@"; do
   case "$option" in
@@ -44,13 +47,19 @@ fi
 
 default_options="--output=${ISO_FILENAME} $overlay"
 
+GRUB_MKRESCUE_BINARY="\
+${SG2D_GRUB_INSTALLATION_PREFIX}\
+/${SG2D_GRUB_INSTALLATION_HYBRID}\
+/bin/grub-mkrescue\
+"
+
 init_overlay_dir
 copy_boot_isos_directory
 copy_copyright
 generate_and_copy_mo_files
 check_unifont
 
-grub-mkrescue $default_options
+"$GRUB_MKRESCUE_BINARY" $default_options
 rm -r "$overlay"
 
 md5sum ${ISO_FILENAME} > ${ISO_FILENAME}.md5

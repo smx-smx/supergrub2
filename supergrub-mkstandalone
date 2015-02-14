@@ -19,6 +19,9 @@ cat <<EOF
 EOF
 
 }
+
+source grub-build-config
+
 # Check the arguments.
 for option in "$@"; do
   case "$option" in
@@ -51,6 +54,12 @@ fi
 
 default_options="--output=${ISO_FILENAME} --overlay=${overlay}"
 
+GRUB_MKSTANDALONE_BINARY="\
+${SG2D_GRUB_INSTALLATION_PREFIX}\
+/${SG2D_GRUB_INSTALLATION_HYBRID}\
+/bin/grub-mkstandalone\
+"
+
 if [[ "x$CUSTOM_FORMAT" != x ]] ; then
   default_options="-O ${CUSTOM_FORMAT} ${default_options}"
 fi
@@ -61,7 +70,7 @@ copy_copyright
 generate_and_copy_mo_files
 check_unifont
 
-./grub-mkstandalone $default_options
+"${GRUB_MKSTANDALONE_BINARY}" $default_options
 rm -r "$overlay"
 
 md5sum ${ISO_FILENAME} > ${ISO_FILENAME}.md5
