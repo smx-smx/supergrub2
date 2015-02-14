@@ -1,0 +1,13 @@
+# Rename this file to: supergrub-build-config
+# if you want it to be used
+
+
+# Use the distro's/path grub instead of SG2D's built one
+
+GRUB_MKRESCUE_BINARY="grub-mkrescue"
+GRUB_MKSTANDALONE_BINARY="grub-mkstandalone"
+
+# Use custom built grub
+
+#GRUB_MKRESCUE_BINARY="/usr/local/bin/grub-mkrescue"
+#GRUB_MKSTANDALONE_BINARY="/usr/local/bin/grub-mkstandalone"

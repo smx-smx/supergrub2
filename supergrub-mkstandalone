@@ -29,6 +29,10 @@ ${SG2D_GRUB_INSTALLATION_PREFIX}\
 /bin/grub-mkstandalone\
 "
 
+if [ -e supergrub-build-config ] ; then
+  source supergrub-build-config
+fi
+
 # Check the arguments.
 for option in "$@"; do
   case "$option" in
