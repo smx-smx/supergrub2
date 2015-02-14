@@ -1,0 +1,51 @@
+This file contains some advice for developing Super GRUB2 Disk daily.
+
+
+How to update Grub installation
+================================
+
+First of all we are assuming that you have performed the original built described at its: 'Super Grub2 Disk Jessie Chroot Build' section in INSTALL file.
+
+As you might Super Grub2 Disk depends on a grub installation. These steps describe how to update Super Grub2 Disk's Grub built and its installation so that you do not have to recreate and download again all of it.
+
+First of all make sure that you modify grub-build-config file so that GRUB2_COMMIT reflects the commit or tag that you want to use in order to base your Super Grub2 Disk release.
+Never use a moving target like the master branch. Well, actually, you can use it, but please read the 'What to do when you release a new Super Grub2 Disk version' section.
+
+Then you just run:
+./grub-build-002-clean-and-update
+./grub-build-003-build-all
+./grub-build-004-install-all
+
+
+What to do when you release a new Super Grub2 Disk version
+==========================================================
+
+Make sure that you are building Super Grub2 Disk with its own build scripts.
+Make sure that the commit found at: grub-build-config file is the one you have used to build it (usually it will be the case).
+
+Update your Super Grub2 Disk's grub installation as described in 'How to update Grub installation' section if needed.
+
+Run: ./supergrub-meta-mkrescue
+
+When you make a public announcement make sure to reflect the exact commit or tag you are using to build grub so that grub experts can understand what features to expect from our grub build.
+
+How does Super Grub2 Disk versioning work?
+==========================================
+
+Beta release example
+--------------------
+
+2.02s1-beta1 means:
+
+2.02: Upstream Grub 2.02 version
+s1 : Super Grub2 Disk scripts version (inside this Upstream Grub version)
+beta1: Beta 1
+
+Stable release example
+--------------------
+
+2.02s1 means:
+
+2.02: Upstream Grub 2.02 version
+s1 : Super Grub2 Disk scripts version (inside this Upstream Grub version)
+
