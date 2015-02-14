@@ -167,3 +167,17 @@ which their filename might vary depending on the current Super Grub2 Disk versio
 
 ./supergrub-meta-mkrescue
 
+
+Alternative Super Grub2 Disk Build
+====================================
+
+This alternative build let's you use your system own grub installation instead of Super Grub2 Disk one.
+
+Just use the same instructions as: "Super Grub2 Disk Jessie Chroot Build" section however:
+
+* Do not run grub-build-* commands
+* Rename supergrub-build-config.example file to supergrub-build-config .
+* Edit supergrub-build-config to suit your grub installation if needed.
+* Just use supergrub-mkrescue command which might build an x86, amd64_efi, hybrid (or another platform) depending your installed system grub.
+* Do not use supergrub-meta-mkrescue because it does not work with your sytem grub.
+
