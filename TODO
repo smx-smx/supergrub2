@@ -2,11 +2,15 @@
 Before working on improving Super Grub Disk, it's very important that you
 make contact with the core Super Grub Disk developers. Things herein might be
 slightly out of date or otherwise not easy to understand at first
-glance. So write to <supergrub-english@lists.berlios.de> first.
+glance. So write to http://lists.forja.cenatic.es/mailman/listinfo/supergrub2-english mailing list first.
 
 For bug tracking, refer to:
 
-  http://supergrub.berlios.de
+  https://forja.cenatic.es/tracker/?atid=928&group_id=204&func=browse
+
+For feature requests, refer to:
+
+  https://forja.cenatic.es/tracker/?atid=930&group_id=204&func=browse
 
 Our wiki also lists some areas that need work:
 
