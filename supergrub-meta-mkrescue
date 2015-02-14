@@ -6,7 +6,9 @@ SGD2_SOURCE_DIR="$(pwd)"
 
 function build_sg2d () {
 
-  ./supergrub-mkrescue -o="${SUPER_GRUB2_DISK_FILE_PREFIX}_${TARGET_PLATFORM}_${sgrub_version}.iso"
+  ./supergrub-mkrescue \
+      -o="${SUPER_GRUB2_DISK_FILE_PREFIX}\
+_${TARGET_PLATFORM}_${sgrub_version}.iso"
 
 }
 
