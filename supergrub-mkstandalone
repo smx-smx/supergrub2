@@ -22,6 +22,12 @@ EOF
 
 source grub-build-config
 
+GRUB_MKSTANDALONE_BINARY="\
+${SG2D_GRUB_INSTALLATION_PREFIX}\
+/${SG2D_GRUB_INSTALLATION_HYBRID}\
+/bin/grub-mkstandalone\
+"
+
 # Check the arguments.
 for option in "$@"; do
   case "$option" in
@@ -35,6 +41,9 @@ for option in "$@"; do
     -O=*)
       CUSTOM_FORMAT=`echo "$option" | sed 's/-O=//'`
     ;;
+    --grub-mkstandalone-binary=*)
+      GRUB_MKSTANDALONE_BINARY=`echo "$option" | sed 's/--grub-mkstandalone-binary=//'`
+    ;;
   esac
 done
 
@@ -43,6 +52,11 @@ source menus/version.cfg
 # Get common library for supergrub-mk commands
 source supergrub-mkcommon
 
+
+if [ ! -x "$GRUB_MKSTANDALONE_BINARY" ] ; then
+  echo -e -n "grub-mkstandalone binary cannot be run.\nAborting.\n" 1>&2
+  exit 1
+fi
 
 BOOT_ISOS_DIRECTORY="boot-isos"
 overlay=$(mktemp -d)
@@ -54,11 +68,6 @@ fi
 
 default_options="--output=${ISO_FILENAME} ${overlay}"
 
-GRUB_MKSTANDALONE_BINARY="\
-${SG2D_GRUB_INSTALLATION_PREFIX}\
-/${SG2D_GRUB_INSTALLATION_HYBRID}\
-/bin/grub-mkstandalone\
-"
 
 if [[ "x$CUSTOM_FORMAT" != x ]] ; then
   default_options="-O ${CUSTOM_FORMAT} ${default_options}"
