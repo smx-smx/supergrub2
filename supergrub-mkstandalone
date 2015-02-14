@@ -52,7 +52,7 @@ if [[ "x$CUSTOM_ISO_FILENAME" != x ]] ; then
   ISO_FILENAME="${CUSTOM_ISO_FILENAME}"
 fi
 
-default_options="--output=${ISO_FILENAME} --overlay=${overlay}"
+default_options="--output=${ISO_FILENAME} ${overlay}"
 
 GRUB_MKSTANDALONE_BINARY="\
 ${SG2D_GRUB_INSTALLATION_PREFIX}\
