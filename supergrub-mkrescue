@@ -58,6 +58,9 @@ for option in "$@"; do
     ;;
     -o=*)
       CUSTOM_ISO_FILENAME=`echo "$option" | sed 's/-o=//'`
+	;;
+    --directory=*)
+      GRUB_DIR=`echo "$option" | sed 's/--directory=//'`
     ;;
     --grub-mkrescue-binary=*)
       GRUB_MKRESCUE_BINARY=`echo "$option" | sed 's/--grub-mkrescue-binary=//'`
